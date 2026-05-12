@@ -58,9 +58,9 @@ function fmtSunTime(iso: string) {
 
 function Index() {
   const [now, setNow] = useState<Date | null>(null);
-  const [weather, setWeather] = useState("It’s mostly cloudy with little chance of rain.");
-  const [sunrise, setSunrise] = useState("5:13 am");
-  const [sunset, setSunset] = useState("6:18 pm");
+  const [weather, setWeather] = useState("Checking the sky…");
+  const [sunrise, setSunrise] = useState("—");
+  const [sunset, setSunset] = useState("—");
 
   useEffect(() => {
     setNow(new Date());
