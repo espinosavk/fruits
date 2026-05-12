@@ -214,7 +214,8 @@
   opacity: 1;
   transform: translate(0, -50%) rotate(0deg) scale(1);
 }
-.fruit-img svg { width: 100%; height: 100%; display: block; }
+.fruit-img svg,
+.fruit-img img { width: 100%; height: 100%; display: block; object-fit: contain; }
 .kat-links {
   padding-left: 14.92px;
   display: flex;
