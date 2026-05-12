@@ -243,6 +243,13 @@
   transition: transform .25s ease;
 }
 .kat-links a:hover .arrow { transform: translateX(4px); }
+.kat-flower {
+  display: block;
+  margin: 64px 0 0 14.92px;
+  width: 96px;
+  height: auto;
+  image-rendering: pixelated;
+}
 @media (max-width: 640px) {
   .kat-body { padding: 56px 24px 60px; }
   .kat-name { font-size: 28px; padding-left: 4px; }
