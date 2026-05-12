@@ -250,6 +250,64 @@
   height: auto;
   image-rendering: pixelated;
 }
+
+.kat-back {
+  display: inline-block;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  margin-bottom: 24px;
+  padding-left: 14.92px;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  color: #1a1a1a;
+}
+.kat-prose {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 18px;
+  line-height: 1.55;
+  padding-left: 14.92px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 540px;
+}
+.kat-column-wide { width: min(820px, 100%); }
+.mundane-list {
+  list-style: none;
+  padding: 0 14.92px;
+  margin: 16px 0 0;
+  font-family: Arial, sans-serif;
+}
+.mundane-row {
+  display: grid;
+  grid-template-columns: 28px 96px 1fr auto;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px dashed #1a1a1a;
+  min-height: 96px;
+}
+.mundane-num { font-size: 14px; color: #1a1a1a; }
+.mundane-thumb {
+  width: 88px;
+  height: 88px;
+  display: block;
+  overflow: hidden;
+}
+.mundane-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.mundane-rule { display: block; }
+.mundane-title {
+  justify-self: end;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #1a1a1a;
+}
+@media (max-width: 640px) {
+  .mundane-row { grid-template-columns: 22px 72px 1fr auto; gap: 10px; min-height: 72px; }
+  .mundane-thumb { width: 64px; height: 64px; }
+  .mundane-title { font-size: 11px; }
+}
 @media (max-width: 640px) {
   .kat-body { padding: 56px 24px 60px; }
   .kat-name { font-size: 28px; padding-left: 4px; }
