@@ -199,7 +199,7 @@
   left: 165px;
   top: 50%;
   width: 130px;
-  height: 130px;
+  height: 195px;
   pointer-events: none;
   opacity: 0;
   transform: translate(-12px, -50%) rotate(-4deg) scale(0.92);
@@ -245,5 +245,5 @@
   .kat-name { font-size: 28px; padding-left: 4px; }
   .kat-section, .kat-links { padding-left: 4px; }
   .kat-bio, .kat-fruits { padding-left: 24px; }
-  .fruit-img { left: 130px; width: 90px; height: 90px; }
+  .fruit-img { left: 130px; width: 90px; height: 135px; }
 }
