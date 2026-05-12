@@ -14,6 +14,13 @@ export default defineConfig({
     tanstackStart({
       // Custom server entry — matches src/server.ts error-page wrapper.
       server: { entry: "server" },
+      // Prerender every reachable route to static HTML at build time so
+      // Vercel can serve dist/client as a pure static site. All "live"
+      // bits (date, time, weather) are client-side, so static is fine.
+      prerender: {
+        enabled: true,
+        crawlLinks: true,
+      },
     }),
     viteReact(),
   ],
