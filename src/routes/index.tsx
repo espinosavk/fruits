@@ -153,11 +153,14 @@ function Index() {
           <p>Design as sense-making, typography: Times new romans, comic sans, transformative experiences, architecture, fermentation, UX design, permaculture, meditation, birds, moss, memory, musicking, clouds</p>
         </div>
 
-        <nav className="kat-links">
-          <Link to="/ecology"><span className="label">Ecology of Ideas </span><span className="arrow">→</span></Link>
-          <Link to="/unglamorous"><span className="label">Unglamorous mundane </span><span className="arrow">→</span></Link>
-          <a href="mailto:kat@moonfrank.com"><span className="label">Say hello </span><span className="arrow">→</span></a>
-        </nav>
+        <div className="kat-section">
+          <h3>Links</h3>
+          <nav className="kat-links">
+            <Link to="/ecology"><span className="label">Ecology of Ideas </span><span className="arrow">→</span></Link>
+            <Link to="/unglamorous"><span className="label">Unglamorous mundane </span><span className="arrow">→</span></Link>
+            <a href="mailto:kat@moonfrank.com"><span className="label">Say hello </span><span className="arrow">→</span></a>
+          </nav>
+        </div>
 
         <img src={flowerGif} alt="" className="kat-flower" />
       </div>

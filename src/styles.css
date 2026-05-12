@@ -2,147 +2,6 @@
 @source "../src";
 @import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
-
-/*
- * Design system definition.
- *
- * The @theme inline block maps CSS custom properties to Tailwind utility
- * classes (e.g. --color-primary -> bg-primary, text-primary).
- *
- * The :root and .dark blocks define the actual color values using oklch.
- * All colors MUST use oklch format.
- *
- * To add a new semantic color:
- * 1. Add the variable to :root (light value) and .dark (dark value)
- * 2. Register it in @theme inline as --color-<name>: var(--<name>)
- */
-
-@theme inline {
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-  --radius-2xl: calc(var(--radius) + 8px);
-  --radius-3xl: calc(var(--radius) + 12px);
-  --radius-4xl: calc(var(--radius) + 16px);
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-  --color-ring-offset-background: var(--background);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
-}
-
-:root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.984 0.003 247.858);
-  --sidebar-foreground: oklch(0.129 0.042 264.695);
-  --sidebar-primary: oklch(0.208 0.042 265.755);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.968 0.007 247.896);
-  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
-  --sidebar-border: oklch(0.929 0.013 255.508);
-  --sidebar-ring: oklch(0.704 0.04 256.788);
-}
-
-.dark {
-  --background: oklch(0.129 0.042 264.695);
-  --foreground: oklch(0.984 0.003 247.858);
-  --card: oklch(0.208 0.042 265.755);
-  --card-foreground: oklch(0.984 0.003 247.858);
-  --popover: oklch(0.208 0.042 265.755);
-  --popover-foreground: oklch(0.984 0.003 247.858);
-  --primary: oklch(0.929 0.013 255.508);
-  --primary-foreground: oklch(0.208 0.042 265.755);
-  --secondary: oklch(0.279 0.041 260.031);
-  --secondary-foreground: oklch(0.984 0.003 247.858);
-  --muted: oklch(0.279 0.041 260.031);
-  --muted-foreground: oklch(0.704 0.04 256.788);
-  --accent: oklch(0.279 0.041 260.031);
-  --accent-foreground: oklch(0.984 0.003 247.858);
-  --destructive: oklch(0.704 0.191 22.216);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.551 0.027 264.364);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.208 0.042 265.755);
-  --sidebar-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.279 0.041 260.031);
-  --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.551 0.027 264.364);
-}
-
-@layer base {
-  * {
-    border-color: var(--color-border);
-  }
-
-  body {
-    background-color: var(--color-background);
-    color: var(--color-foreground);
-  }
-}
-
 /* ─── Kat Espinosa brutalist page ─── */
 .kat-body {
   margin: 0;
@@ -150,11 +9,12 @@
   background: #ffffff;
   color: #000;
   font-family: "Times New Roman", Times, serif;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.4;
   display: flex;
   justify-content: center;
   min-height: 100vh;
+  position: relative;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -170,17 +30,17 @@
   margin: 0 0 16px;
   padding-left: 12.78px;
 }
-.kat-bio { list-style: disc; padding: 0 0 0 30px; margin: 0 0 56px; font-size: 16px; }
+.kat-bio { list-style: disc; padding: 0 0 0 30px; margin: 0 0 56px; font-size: 18px; }
 .kat-bio li { margin: 0; }
 .kat-section { padding-left: 15px; margin-bottom: 48px; }
 .kat-section h3 {
   font-family: Arial, sans-serif;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.4;
   margin: 0 0 16px;
 }
-.kat-section p { margin: 0; font-size: 16px; line-height: 1.4; }
+.kat-section p { margin: 0; font-size: 18px; line-height: 1.4; }
 .kat-fruits {
   list-style: disc;
   padding: 0 0 0 30px;
@@ -193,7 +53,7 @@
 .fruit-item { position: relative; width: max-content; cursor: default; }
 .fruit-name {
   display: inline-block;
-  color: #1a4dff;
+  color: #0c3ec0;
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 2px;
@@ -201,7 +61,7 @@
   transition: color .2s ease;
 }
 .fruit-item:hover .fruit-name,
-.fruit-item:focus-within .fruit-name { color: #0033cc; }
+.fruit-item:focus-within .fruit-name { color: #062a8c; }
 .fruit-img {
   position: absolute;
   left: 165px;
@@ -220,24 +80,27 @@
 .fruit-img svg,
 .fruit-img img { width: 100%; height: 100%; display: block; object-fit: contain; }
 .kat-links {
-  padding-left: 14.92px;
   display: flex;
   flex-direction: column;
-  gap: 39px;
-  font-family: Arial, sans-serif;
+  gap: 16px;
+  font-family: "Times New Roman", Times, serif;
   font-size: 18px;
   line-height: 1.4;
-  margin-top: 16px;
 }
-.kat-links a { display: inline-block; width: max-content; }
+.kat-links a {
+  display: inline-block;
+  width: max-content;
+  color: #0c3ec0;
+  transition: color .2s ease;
+}
+.kat-links a:hover,
+.kat-links a:focus-visible { color: #062a8c; }
 .kat-links .label {
-  font-weight: bold;
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 2px;
 }
 .kat-links .arrow {
-  font-weight: normal;
   margin-left: 4px;
   display: inline-block;
   transition: transform .25s ease;
@@ -253,13 +116,59 @@
 
 .kat-back {
   display: inline-block;
-  font-family: Arial, sans-serif;
-  font-size: 14px;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 18px;
+  line-height: 1.4;
   margin-bottom: 24px;
   padding-left: 14.92px;
+  color: #0c3ec0;
+  transition: color .2s ease;
+}
+.kat-back .label {
   text-decoration: underline;
+  text-decoration-thickness: 1px;
   text-underline-offset: 2px;
-  color: #1a1a1a;
+}
+.kat-back .arrow {
+  margin-right: 4px;
+  display: inline-block;
+  transition: transform .25s ease;
+}
+.kat-back:hover .arrow,
+.kat-back:focus-visible .arrow { transform: translateX(-4px); }
+.kat-back:hover,
+.kat-back:focus-visible { color: #062a8c; }
+/* Floating variant — pinned to the page corner so the back link is in
+   the same place on every subpage, regardless of the page's content
+   width (narrow column vs full-bleed grid). */
+.kat-back--floating {
+  position: absolute;
+  top: 32px;
+  left: 32px;
+  padding-left: 0;
+  margin-bottom: 0;
+  z-index: 10;
+}
+/* Title variant — centered horizontally within its container so the
+   "page title" position is uniform across subpages. */
+.kat-name--centered {
+  padding-left: 0;
+  text-align: center;
+  margin: 0 0 48px;
+}
+/* Tightens the title's bottom margin when a subtitle follows, so the
+   two sit close together as a unit. */
+.kat-name--centered:has(+ .kat-subtitle--centered) {
+  margin-bottom: 12px;
+}
+/* Subtitle under a centered title — small Times note. */
+.kat-subtitle--centered {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 18px;
+  line-height: 1.4;
+  text-align: center;
+  color: #000;
+  margin: 0 0 48px;
 }
 .kat-prose {
   font-family: "Times New Roman", Times, serif;
@@ -271,6 +180,12 @@
   gap: 16px;
   max-width: 540px;
 }
+.kat-prose-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 0 8px;
+}
 .kat-column-wide { width: min(820px, 100%); }
 .mundane-page {
   width: 100%;
@@ -278,18 +193,16 @@
   margin: 0;
   padding: 56px 32px 96px;
 }
-.mundane-header { margin-bottom: 48px; }
-.mundane-header .kat-back { padding-left: 0; }
-.mundane-header .kat-name { padding-left: 0; }
 .mundane-grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  grid-auto-rows: 70px;
-  gap: 16px;
+  grid-auto-rows: 72px;
+  gap: 24px;
 }
 .mundane-tile {
-  overflow: hidden;
+  position: relative;
   background: #efece4;
+  margin: 0;
 }
 .mundane-tile img {
   width: 100%;
@@ -297,29 +210,59 @@
   object-fit: cover;
   display: block;
 }
-.mundane-note pre {
-  font-family: "Courier New", Courier, monospace;
-  font-size: 12px;
-  line-height: 1.55;
+/* Hover-revealed caption sitting just below each tile. */
+.mundane-caption {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  font-family: "Times New Roman", Times, serif;
+  font-style: italic;
+  font-size: 14px;
+  line-height: 1.3;
   color: #1a1a1a;
-  margin: 0;
-  white-space: pre-wrap;
-  align-self: start;
+  opacity: 0;
+  transition: opacity .22s ease;
+  pointer-events: none;
+  z-index: 1;
+  white-space: nowrap;
+  overflow: visible;
 }
-.mundane-note { display: flex; align-items: flex-start; padding-top: 8px; }
+.mundane-tile:hover .mundane-caption,
+.mundane-tile:focus-within .mundane-caption {
+  opacity: 1;
+}
+/* Lift the hovered tile above its neighbors so its caption can extend
+   into adjacent grid cells without being covered. */
+.mundane-tile:hover,
+.mundane-tile:focus-within {
+  z-index: 5;
+}
+/* Tiles holding images with embedded text (memes). Contain instead of
+   cover so no edge text gets cropped; min size keeps it readable. */
+.mundane-tile--text { background: #ffffff; }
+.mundane-tile--text img {
+  object-fit: contain;
+  min-width: 0;
+}
+.mundane-tile--text {
+  min-width: 320px;
+  min-height: 240px;
+}
 @media (max-width: 720px) {
+  .kat-back--floating { top: 20px; left: 20px; }
   .mundane-page { padding: 40px 20px 64px; }
   .mundane-grid {
     grid-template-columns: repeat(6, 1fr);
     grid-auto-rows: 60px;
     gap: 12px;
   }
-  .mundane-tile, .mundane-note {
+  .mundane-tile {
     grid-column: 1 / -1 !important;
     grid-row: auto !important;
     height: auto;
+    aspect-ratio: 4 / 3;
   }
-  .mundane-tile { aspect-ratio: 4 / 3; }
 }
 @media (max-width: 640px) {
   .kat-body { padding: 56px 24px 60px; }
