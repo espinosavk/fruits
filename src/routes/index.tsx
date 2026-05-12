@@ -1,16 +1,20 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import mangoImg from "@/assets/fruit-mango.jpg";
-import santolImg from "@/assets/fruit-santol.jpg";
-import watermelonImg from "@/assets/fruit-watermelon.jpg";
-import sinigwelasImg from "@/assets/fruit-sinigwelas.jpg";
+import mangoImg from "@/assets/fruit-mango.webp";
+import santolImg from "@/assets/fruit-santol.webp";
+import watermelonImg from "@/assets/fruit-watermelon.webp";
+import sinigwelasImg from "@/assets/fruit-sinigwelas.webp";
 import flowerGif from "@/assets/flower.gif";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Kat Espinosa" },
-      { name: "description", content: "Kat Espinosa — designer, walker, houseplant." },
+      { title: "Kat Espinosa · Designer" },
+      {
+        name: "description",
+        content:
+          "Kat Espinosa is a designer based in Metro Manila. UX design, product design, notes on the ecology of ideas. Designer, walker, houseplant.",
+      },
     ],
   }),
   component: Index,

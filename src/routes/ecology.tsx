@@ -1,16 +1,24 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 
-// TODO: drop the image at src/assets/ecology.jpg, then uncomment the import
-// and the <img> tag below.
-// import ecologyImg from "@/assets/ecology.jpg";
+// TODO: drop the image at src/assets/ecology.webp, then uncomment the import
+// and the <img> tag below. (Convert to WebP via: cwebp -q 80 src.jpg -o ecology.webp)
+// import ecologyImg from "@/assets/ecology.webp";
 
 export const Route = createFileRoute("/ecology")({
   head: () => ({
     meta: [
-      { title: "Ecology of Ideas — Kat Espinosa" },
-      { name: "description", content: "Notes on the ecology of ideas." },
+      { title: "Ecology of Ideas — Kat Espinosa, Designer" },
+      {
+        name: "description",
+        content:
+          "Notes on design, UX, and the ecology of ideas — by Kat Espinosa, designer based in Metro Manila.",
+      },
       { property: "og:title", content: "Ecology of Ideas — Kat Espinosa" },
-      { property: "og:description", content: "Notes on the ecology of ideas." },
+      {
+        property: "og:description",
+        content:
+          "Notes on design, UX, and the ecology of ideas — by Kat Espinosa.",
+      },
     ],
   }),
   component: EcologyPage,

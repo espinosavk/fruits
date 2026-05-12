@@ -61,23 +61,78 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   );
 }
 
+// Canonical site URL — used for OG tags, canonical link, and structured data.
+// Update this when you point a custom domain at the Vercel deploy.
+const SITE_URL = "https://katespinosa.com";
+
+// JSON-LD Person schema — tells Google "this site is about a specific person
+// named Kat Espinosa, who's a designer in Manila". Improves search ranking
+// for branded queries like "kat espinosa designer".
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Kat Espinosa",
+  alternateName: "Kat",
+  jobTitle: "Designer",
+  url: SITE_URL,
+  description:
+    "Kat Espinosa is a designer based in Metro Manila, working on UX design, product design, and notes on the ecology of ideas.",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Metro Manila",
+    addressCountry: "PH",
+  },
+  knowsAbout: [
+    "UX Design",
+    "Product Design",
+    "User Experience",
+    "Web Design",
+    "Typography",
+    "Design Systems",
+  ],
+};
+
 export const Route = createRootRoute({
   head: () => ({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Kat Espinosa" },
-      { name: "description", content: "Kat Espinosa — designer, walker, houseplant." },
+      { title: "Kat Espinosa · Designer" },
+      {
+        name: "description",
+        content:
+          "Kat Espinosa is a designer based in Metro Manila — UX design, product design, and notes on the ecology of ideas. Designer, walker, houseplant.",
+      },
       { name: "author", content: "Kat Espinosa" },
-      { property: "og:title", content: "Kat Espinosa" },
-      { property: "og:description", content: "Designer, walker, houseplant. Based in Metro Manila." },
+      { name: "robots", content: "index, follow" },
+      // Open Graph
+      { property: "og:title", content: "Kat Espinosa · Designer" },
+      {
+        property: "og:description",
+        content:
+          "Designer based in Metro Manila. UX design, product design, walker, houseplant.",
+      },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: SITE_URL },
+      { property: "og:locale", content: "en_US" },
+      { property: "og:site_name", content: "Kat Espinosa" },
+      // Twitter
       { name: "twitter:card", content: "summary" },
+      { name: "twitter:title", content: "Kat Espinosa · Designer" },
+      {
+        name: "twitter:description",
+        content: "Designer in Metro Manila. UX design, product design.",
+      },
     ],
     links: [
+      { rel: "stylesheet", href: appCss },
+      { rel: "canonical", href: SITE_URL },
+      { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
+    ],
+    scripts: [
       {
-        rel: "stylesheet",
-        href: appCss,
+        type: "application/ld+json",
+        children: JSON.stringify(personSchema),
       },
     ],
   }),

@@ -1,31 +1,39 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import m1 from "@/assets/mundane-1.jpg";
-import m2 from "@/assets/mundane-2.jpg";
-import m3 from "@/assets/mundane-3.jpg";
-import m4 from "@/assets/mundane-4.jpg";
-import m5 from "@/assets/mundane-5.jpg";
-import m6 from "@/assets/mundane-6.jpg";
-import m7 from "@/assets/mundane-7.jpg";
-import m8 from "@/assets/mundane-8.jpg";
-import m9 from "@/assets/mundane-9.jpg";
-import m10 from "@/assets/mundane-10.jpg";
-import m11 from "@/assets/mundane-11.jpg";
-import m12 from "@/assets/mundane-12.jpg";
-import m13 from "@/assets/mundane-13.jpg";
-import m14 from "@/assets/mundane-14.jpg";
-import m15 from "@/assets/mundane-15.jpg";
-import m16 from "@/assets/mundane-16.jpg";
-import m17 from "@/assets/mundane-17.jpg";
-import m18 from "@/assets/mundane-18.jpg";
-import m20 from "@/assets/mundane-20.jpg";
+import m1 from "@/assets/mundane-1.webp";
+import m2 from "@/assets/mundane-2.webp";
+import m3 from "@/assets/mundane-3.webp";
+import m4 from "@/assets/mundane-4.webp";
+import m5 from "@/assets/mundane-5.webp";
+import m6 from "@/assets/mundane-6.webp";
+import m7 from "@/assets/mundane-7.webp";
+import m8 from "@/assets/mundane-8.webp";
+import m9 from "@/assets/mundane-9.webp";
+import m10 from "@/assets/mundane-10.webp";
+import m11 from "@/assets/mundane-11.webp";
+import m12 from "@/assets/mundane-12.webp";
+import m13 from "@/assets/mundane-13.webp";
+import m14 from "@/assets/mundane-14.webp";
+import m15 from "@/assets/mundane-15.webp";
+import m16 from "@/assets/mundane-16.webp";
+import m17 from "@/assets/mundane-17.webp";
+import m18 from "@/assets/mundane-18.webp";
+import m20 from "@/assets/mundane-20.webp";
 
 export const Route = createFileRoute("/unglamorous")({
   head: () => ({
     meta: [
-      { title: "Unglamorous Mundane — Kat Espinosa" },
-      { name: "description", content: "A small archive of unglamorous, ordinary moments." },
+      { title: "Unglamorous Mundane — Kat Espinosa, Designer" },
+      {
+        name: "description",
+        content:
+          "A small archive of unglamorous, ordinary moments — photographs by Kat Espinosa, designer based in Metro Manila.",
+      },
       { property: "og:title", content: "Unglamorous Mundane — Kat Espinosa" },
-      { property: "og:description", content: "A small archive of unglamorous, ordinary moments." },
+      {
+        property: "og:description",
+        content:
+          "A small archive of unglamorous, ordinary moments. Photographs from the Philippines.",
+      },
     ],
   }),
   component: UnglamorousPage,
