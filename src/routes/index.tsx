@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import mangoImg from "@/assets/fruit-mango.jpg";
 import santolImg from "@/assets/fruit-santol.jpg";
@@ -154,9 +154,9 @@ function Index() {
         </div>
 
         <nav className="kat-links">
-          <a href="#"><span className="label">Ecology of Ideas </span><span className="arrow">→</span></a>
-          <a href="#"><span className="label">Unglamorous mundane </span><span className="arrow">→</span></a>
-          <a href="#"><span className="label">Say hello </span><span className="arrow">→</span></a>
+          <Link to="/ecology"><span className="label">Ecology of Ideas </span><span className="arrow">→</span></Link>
+          <Link to="/unglamorous"><span className="label">Unglamorous mundane </span><span className="arrow">→</span></Link>
+          <a href="mailto:kat@moonfrank.com"><span className="label">Say hello </span><span className="arrow">→</span></a>
         </nav>
 
         <img src={flowerGif} alt="" className="kat-flower" />

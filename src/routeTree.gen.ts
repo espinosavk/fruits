@@ -9,8 +9,20 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as UnglamorousRouteImport } from './routes/unglamorous'
+import { Route as EcologyRouteImport } from './routes/ecology'
 import { Route as IndexRouteImport } from './routes/index'
 
+const UnglamorousRoute = UnglamorousRouteImport.update({
+  id: '/unglamorous',
+  path: '/unglamorous',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EcologyRoute = EcologyRouteImport.update({
+  id: '/ecology',
+  path: '/ecology',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +31,50 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/ecology': typeof EcologyRoute
+  '/unglamorous': typeof UnglamorousRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/ecology': typeof EcologyRoute
+  '/unglamorous': typeof UnglamorousRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/ecology': typeof EcologyRoute
+  '/unglamorous': typeof UnglamorousRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/ecology' | '/unglamorous'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/ecology' | '/unglamorous'
+  id: '__root__' | '/' | '/ecology' | '/unglamorous'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  EcologyRoute: typeof EcologyRoute
+  UnglamorousRoute: typeof UnglamorousRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/unglamorous': {
+      id: '/unglamorous'
+      path: '/unglamorous'
+      fullPath: '/unglamorous'
+      preLoaderRoute: typeof UnglamorousRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ecology': {
+      id: '/ecology'
+      path: '/ecology'
+      fullPath: '/ecology'
+      preLoaderRoute: typeof EcologyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,6 +87,8 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  EcologyRoute: EcologyRoute,
+  UnglamorousRoute: UnglamorousRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
