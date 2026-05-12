@@ -4,6 +4,7 @@ import mangoImg from "@/assets/fruit-mango.jpg";
 import santolImg from "@/assets/fruit-santol.jpg";
 import watermelonImg from "@/assets/fruit-watermelon.jpg";
 import sinigwelasImg from "@/assets/fruit-sinigwelas.jpg";
+import flowerGif from "@/assets/flower.gif";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -157,6 +158,8 @@ function Index() {
           <a href="#"><span className="label">Unglamorous mundane </span><span className="arrow">→</span></a>
           <a href="#"><span className="label">Say hello </span><span className="arrow">→</span></a>
         </nav>
+
+        <img src={flowerGif} alt="" className="kat-flower" />
       </div>
     </div>
   );
