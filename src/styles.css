@@ -142,3 +142,107 @@
     color: var(--color-foreground);
   }
 }
+
+/* ─── Kat Espinosa brutalist page ─── */
+.kat-body {
+  margin: 0;
+  padding: 87px 20px 80px;
+  background: #ffffff;
+  color: #000;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 16px;
+  line-height: 1.4;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.kat-body a { color: inherit; text-decoration: none; }
+.kat-body * { box-sizing: border-box; }
+.kat-column { width: 491px; max-width: 100%; position: relative; }
+.kat-name {
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  font-size: 32px;
+  letter-spacing: -0.76px;
+  line-height: 1;
+  margin: 0 0 16px;
+  padding-left: 12.78px;
+}
+.kat-bio { list-style: disc; padding: 0 0 0 30px; margin: 0 0 56px; font-size: 16px; }
+.kat-bio li { margin: 0; }
+.kat-section { padding-left: 15px; margin-bottom: 48px; }
+.kat-section h3 {
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 1.4;
+  margin: 0 0 16px;
+}
+.kat-section p { margin: 0; font-size: 16px; line-height: 1.4; }
+.kat-fruits {
+  list-style: disc;
+  padding: 0 0 0 30px;
+  margin: 0;
+  font-family: "Times New Roman", Times, serif;
+  font-style: italic;
+  font-size: 18px;
+  line-height: 1.4;
+}
+.fruit-item { position: relative; width: max-content; cursor: default; }
+.fruit-name { display: inline-block; transition: color .2s ease; }
+.fruit-item:hover .fruit-name,
+.fruit-item:focus-within .fruit-name { color: #1a1a1a; }
+.fruit-img {
+  position: absolute;
+  left: 165px;
+  top: 50%;
+  width: 130px;
+  height: 130px;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-12px, -50%) rotate(-4deg) scale(0.92);
+  transform-origin: left center;
+  transition:
+    opacity .35s cubic-bezier(.2, .7, .3, 1),
+    transform .45s cubic-bezier(.2, .7, .3, 1);
+  z-index: 5;
+}
+.fruit-item:hover .fruit-img,
+.fruit-item:focus-within .fruit-img {
+  opacity: 1;
+  transform: translate(0, -50%) rotate(0deg) scale(1);
+}
+.fruit-img svg { width: 100%; height: 100%; display: block; }
+.kat-links {
+  padding-left: 14.92px;
+  display: flex;
+  flex-direction: column;
+  gap: 39px;
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+  line-height: 1.4;
+  margin-top: 16px;
+}
+.kat-links a { display: inline-block; width: max-content; }
+.kat-links .label {
+  font-weight: bold;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+.kat-links .arrow {
+  font-weight: normal;
+  margin-left: 4px;
+  display: inline-block;
+  transition: transform .25s ease;
+}
+.kat-links a:hover .arrow { transform: translateX(4px); }
+@media (max-width: 640px) {
+  .kat-body { padding: 56px 24px 60px; }
+  .kat-name { font-size: 28px; padding-left: 4px; }
+  .kat-section, .kat-links { padding-left: 4px; }
+  .kat-bio, .kat-fruits { padding-left: 24px; }
+  .fruit-img { left: 130px; width: 90px; height: 90px; }
+}
