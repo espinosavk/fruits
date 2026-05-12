@@ -191,9 +191,17 @@
   line-height: 1.4;
 }
 .fruit-item { position: relative; width: max-content; cursor: default; }
-.fruit-name { display: inline-block; transition: color .2s ease; }
+.fruit-name {
+  display: inline-block;
+  color: #1a4dff;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  cursor: pointer;
+  transition: color .2s ease;
+}
 .fruit-item:hover .fruit-name,
-.fruit-item:focus-within .fruit-name { color: #1a1a1a; }
+.fruit-item:focus-within .fruit-name { color: #0033cc; }
 .fruit-img {
   position: absolute;
   left: 165px;
