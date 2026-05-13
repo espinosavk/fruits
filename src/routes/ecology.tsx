@@ -11,13 +11,13 @@ export const Route = createFileRoute("/ecology")({
       {
         name: "description",
         content:
-          "Notes on UX design and the ecology of ideas — by Kat Espinosa, UX designer in Manila, Philippines.",
+          "Notes on web design, content design, and how B2B firms communicate — writing by Kat Espinosa, UX designer in Manila.",
       },
       { property: "og:title", content: "Ecology of Ideas — Kat Espinosa" },
       {
         property: "og:description",
         content:
-          "Notes on UX design and the ecology of ideas — by Kat Espinosa, UX designer in Manila.",
+          "Notes on web design, content design, and B2B communication. By Kat Espinosa.",
       },
     ],
   }),

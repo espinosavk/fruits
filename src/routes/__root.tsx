@@ -66,8 +66,8 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 const SITE_URL = "https://katespinosa.com";
 
 // JSON-LD Person schema — tells Google "this site is about a specific person
-// named Kat Espinosa, a UX designer in Manila". Targets branded queries like
-// "kat espinosa ux designer", "kat espinosa designer", "kat espinosa manila".
+// named Kat Espinosa, a UX designer in Manila working at the intersection of
+// web design, content design, and B2B communication".
 const personSchema = {
   "@context": "https://schema.org",
   "@type": "Person",
@@ -76,7 +76,7 @@ const personSchema = {
   jobTitle: "UX Designer",
   url: SITE_URL,
   description:
-    "Kat Espinosa is a UX designer based in Manila, Philippines. UX design, product design, design systems, and notes on the ecology of ideas.",
+    "Kat Espinosa is a UX designer in Manila working at the intersection of web design, content design, and how B2B firms communicate to their market.",
   address: {
     "@type": "PostalAddress",
     addressLocality: "Manila",
@@ -85,11 +85,12 @@ const personSchema = {
   },
   knowsAbout: [
     "UX Design",
-    "User Experience Design",
-    "Product Design",
     "Web Design",
+    "Content Design",
+    "Information Architecture",
+    "B2B Communication",
+    "Brand Strategy",
     "Design Systems",
-    "Typography",
   ],
 };
 
@@ -102,7 +103,7 @@ export const Route = createRootRoute({
       {
         name: "description",
         content:
-          "Kat Espinosa is a UX designer based in Manila, Philippines — product design, design systems, and notes on the ecology of ideas. Designer, walker, houseplant.",
+          "Kat Espinosa is a UX designer in Manila working at the intersection of web design, content design, and how B2B firms communicate to their market.",
       },
       { name: "author", content: "Kat Espinosa" },
       { name: "robots", content: "index, follow" },
@@ -111,7 +112,7 @@ export const Route = createRootRoute({
       {
         property: "og:description",
         content:
-          "Kat Espinosa, UX designer in Manila. Product design, design systems, walker, houseplant.",
+          "UX designer in Manila helping B2B firms communicate. Web design, content design.",
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: SITE_URL },
@@ -130,7 +131,7 @@ export const Route = createRootRoute({
       { name: "twitter:title", content: "Kat Espinosa — UX Designer in Manila" },
       {
         name: "twitter:description",
-        content: "UX designer in Manila, Philippines. Product design, design systems.",
+        content: "UX designer in Manila helping B2B firms communicate. Web + content design.",
       },
       { name: "twitter:image", content: `${SITE_URL}/og-image.png` },
       {

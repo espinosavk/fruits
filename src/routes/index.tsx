@@ -13,7 +13,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Kat Espinosa is a UX designer based in Manila, Philippines. Product design, design systems, notes on the ecology of ideas. Designer, walker, houseplant.",
+          "Kat Espinosa is a UX designer in Manila working at the intersection of web design, content design, and how B2B firms communicate to their market.",
       },
     ],
   }),
@@ -154,7 +154,7 @@ function Index() {
 
         <div className="kat-section">
           <h3>Day job</h3>
-          <p>design for b2b firms and agencies: <a className="kat-link" href="https://moonfrank.com" target="_blank" rel="noopener noreferrer">moonfrank.com</a></p>
+          <p>Web and content design for B2B firms: <a className="kat-link" href="https://moonfrank.com" target="_blank" rel="noopener noreferrer">moonfrank.com</a></p>
         </div>
 
         <div className="kat-section">
@@ -167,7 +167,7 @@ function Index() {
           <nav className="kat-links">
             <Link to="/ecology"><span className="label">Ecology of Ideas </span><span className="arrow">→</span></Link>
             <Link to="/unglamorous"><span className="label">Unglamorous mundane </span><span className="arrow">→</span></Link>
-            <a href="mailto:kat@moonfrank.com"><span className="label">Say hello </span><span className="arrow">→</span></a>
+            <a href="mailto:kat@moonfrank.com"><span className="label">Contact: kat@moonfrank.com </span><span className="arrow">→</span></a>
           </nav>
         </div>
 
