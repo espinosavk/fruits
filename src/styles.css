@@ -113,6 +113,13 @@
   height: auto;
   image-rendering: pixelated;
 }
+.kat-quote {
+  margin: 48px 0 0 14.92px;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #000;
+}
 
 .kat-back {
   display: inline-block;

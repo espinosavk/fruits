@@ -172,6 +172,14 @@ function Index() {
         </div>
 
         <img src={flowerGif} alt="" className="kat-flower" width={75} height={75} loading="lazy" />
+
+        <p className="kat-quote">
+          ★★★☆
+          <br />
+          “pretty good at design but pretty bad at cooking”
+          <br />
+          — <em>Doris, my mother</em>
+        </p>
       </div>
     </div>
   );
