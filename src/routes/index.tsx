@@ -111,7 +111,7 @@ function Index() {
         </ul>
 
         <div className="kat-section">
-          <h3>Today, <span>{now ? fmtDate(now) : "—"}</span></h3>
+          <h2>Today, <span>{now ? fmtDate(now) : "—"}</span></h2>
           <p>
             It’s <span>{now ? fmtTime(now) : "—"}</span> in Metro Manila, Philippines.<br />
             <span>{weather}</span><br />
@@ -120,50 +120,50 @@ function Index() {
         </div>
 
         <div className="kat-section">
-          <h3>Fruits in season</h3>
+          <h2>Fruits in season</h2>
           <ul className="kat-fruits">
             <li className="fruit-item" tabIndex={0}>
               <span className="fruit-name">mango</span>
               <span className="fruit-img" aria-hidden="true">
-                <img src={mangoImg} alt="mango" loading="lazy" width={512} height={768} />
+                <img src={mangoImg} alt="mango" loading="lazy" width={320} height={240} />
               </span>
             </li>
 
             <li className="fruit-item" tabIndex={0}>
               <span className="fruit-name">santol</span>
               <span className="fruit-img" aria-hidden="true">
-                <img src={santolImg} alt="santol" loading="lazy" width={512} height={768} />
+                <img src={santolImg} alt="santol" loading="lazy" width={320} height={290} />
               </span>
             </li>
 
             <li className="fruit-item" tabIndex={0}>
               <span className="fruit-name">watermelon</span>
               <span className="fruit-img" aria-hidden="true">
-                <img src={watermelonImg} alt="watermelon" loading="lazy" width={512} height={768} />
+                <img src={watermelonImg} alt="watermelon" loading="lazy" width={320} height={213} />
               </span>
             </li>
 
             <li className="fruit-item" tabIndex={0}>
               <span className="fruit-name">sinigwelas</span>
               <span className="fruit-img" aria-hidden="true">
-                <img src={sinigwelasImg} alt="sinigwelas" loading="lazy" width={512} height={768} />
+                <img src={sinigwelasImg} alt="sinigwelas" loading="lazy" width={320} height={213} />
               </span>
             </li>
           </ul>
         </div>
 
         <div className="kat-section">
-          <h3>Day job</h3>
+          <h2>Day job</h2>
           <p>Web and content design for B2B firms: <a className="kat-link" href="https://moonfrank.com" target="_blank" rel="noopener noreferrer">moonfrank.com</a></p>
         </div>
 
         <div className="kat-section">
-          <h3>Introverted but willing to talk about</h3>
+          <h2>Introverted but willing to talk about</h2>
           <p>Design as sense-making, typography: times new romans, comic sans, transformative experiences, architecture, fermentation, UX design, permaculture, meditation, birds, moss, memory, musicking, clouds</p>
         </div>
 
         <div className="kat-section">
-          <h3>Links</h3>
+          <h2>Links</h2>
           <nav className="kat-links">
             <Link to="/ecology"><span className="label">Ecology of Ideas </span><span className="arrow">→</span></Link>
             <Link to="/unglamorous"><span className="label">Unglamorous mundane </span><span className="arrow">→</span></Link>
@@ -171,7 +171,7 @@ function Index() {
           </nav>
         </div>
 
-        <img src={flowerGif} alt="" className="kat-flower" />
+        <img src={flowerGif} alt="" className="kat-flower" width={75} height={75} loading="lazy" />
       </div>
     </div>
   );
