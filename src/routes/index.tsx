@@ -153,8 +153,13 @@ function Index() {
         </div>
 
         <div className="kat-section">
-          <h3>Interests</h3>
-          <p>Design as sense-making, typography: Times new romans, comic sans, transformative experiences, architecture, fermentation, UX design, permaculture, meditation, birds, moss, memory, musicking, clouds</p>
+          <h3>Day job</h3>
+          <p>design for b2b firms and agencies: <a className="kat-link" href="https://moonfrank.com" target="_blank" rel="noopener noreferrer">moonfrank.com</a></p>
+        </div>
+
+        <div className="kat-section">
+          <h3>Introverted but willing to talk about</h3>
+          <p>Design as sense-making, typography: times new romans, comic sans, transformative experiences, architecture, fermentation, UX design, permaculture, meditation, birds, moss, memory, musicking, clouds</p>
         </div>
 
         <div className="kat-section">

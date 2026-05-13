@@ -138,6 +138,18 @@
 .kat-back:focus-visible .arrow { transform: translateX(-4px); }
 .kat-back:hover,
 .kat-back:focus-visible { color: #062a8c; }
+
+/* Inline link inside body paragraphs (e.g. moonfrank.com under "day job").
+   Matches the rest of the site's link vocabulary: blue, underlined. */
+.kat-link {
+  color: #0c3ec0;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  transition: color .2s ease;
+}
+.kat-link:hover,
+.kat-link:focus-visible { color: #062a8c; }
 /* Floating variant — pinned to the page corner so the back link is in
    the same place on every subpage, regardless of the page's content
    width (narrow column vs full-bleed grid). */

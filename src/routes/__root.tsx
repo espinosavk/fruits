@@ -117,12 +117,25 @@ export const Route = createRootRoute({
       { property: "og:url", content: SITE_URL },
       { property: "og:locale", content: "en_US" },
       { property: "og:site_name", content: "Kat Espinosa" },
-      // Twitter
-      { name: "twitter:card", content: "summary" },
+      // OG image — ASCII houseplant with integrated name (1800 × 945)
+      { property: "og:image", content: `${SITE_URL}/og-image.png` },
+      { property: "og:image:width", content: "1800" },
+      { property: "og:image:height", content: "945" },
+      {
+        property: "og:image:alt",
+        content: "ASCII art of a houseplant with the name Kat Espinosa",
+      },
+      // Twitter — uses the larger card now that we have a proper image
+      { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Kat Espinosa — UX Designer in Manila" },
       {
         name: "twitter:description",
         content: "UX designer in Manila, Philippines. Product design, design systems.",
+      },
+      { name: "twitter:image", content: `${SITE_URL}/og-image.png` },
+      {
+        name: "twitter:image:alt",
+        content: "ASCII art of a houseplant with the name Kat Espinosa",
       },
     ],
     links: [
