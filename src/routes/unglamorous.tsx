@@ -98,6 +98,32 @@ const tiles: Tile[] = [
   { src: m16, alt: "", caption: "",        col: "5 / span 4",  row: "66 / span 4", hasText: true },
 ];
 
+// Derive a mobile size + edge-alignment from each tile's desktop grid
+// position. Wider span → bigger on mobile; starting column position
+// determines whether the tile aligns left, center, or right.
+function mobileLayout(col: string, row: string): { size: string; align: string } {
+  const colMatch = col.match(/(\d+)\s*\/\s*span\s*(\d+)/);
+  const rowMatch = row.match(/(\d+)\s*\/\s*span\s*(\d+)/);
+  const startCol = colMatch ? parseInt(colMatch[1]) : 6;
+  const colSpan = colMatch ? parseInt(colMatch[2]) : 3;
+  const rowSpan = rowMatch ? parseInt(rowMatch[2]) : 3;
+
+  let size: string;
+  if (colSpan <= 2) size = "tiny";
+  else if (colSpan === 3 && rowSpan >= 5) size = "med";
+  else if (colSpan === 3) size = "small";
+  else if (colSpan === 4) size = "med";
+  else if (colSpan === 5) size = "big";
+  else size = "huge";
+
+  let align: string;
+  if (startCol <= 3) align = "left";
+  else if (startCol >= 8) align = "right";
+  else align = "center";
+
+  return { size, align };
+}
+
 function UnglamorousPage() {
   return (
     <div className="kat-body">
@@ -109,17 +135,22 @@ function UnglamorousPage() {
         <h1 className="kat-name kat-name--centered">Unglamorous Mundane</h1>
         <p className="kat-subtitle--centered">pics from my phone</p>
         <div className="mundane-grid">
-          {tiles.map((t, i) => (
-            <figure
-              key={i}
-              className={`mundane-tile${t.hasText ? " mundane-tile--text" : ""}`}
-              style={{ gridColumn: t.col, gridRow: t.row }}
-              tabIndex={0}
-            >
-              <img src={t.src} alt={t.alt} loading="lazy" />
-              {t.caption && <figcaption className="mundane-caption">{t.caption}</figcaption>}
-            </figure>
-          ))}
+          {tiles.map((t, i) => {
+            const m = mobileLayout(t.col, t.row);
+            return (
+              <figure
+                key={i}
+                className={`mundane-tile${t.hasText ? " mundane-tile--text" : ""}`}
+                style={{ gridColumn: t.col, gridRow: t.row }}
+                data-size={m.size}
+                data-align={m.align}
+                tabIndex={0}
+              >
+                <img src={t.src} alt={t.alt} loading="lazy" />
+                {t.caption && <figcaption className="mundane-caption">{t.caption}</figcaption>}
+              </figure>
+            );
+          })}
         </div>
       </div>
     </div>
