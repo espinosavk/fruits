@@ -22,17 +22,17 @@ import m20 from "@/assets/mundane-20.webp";
 export const Route = createFileRoute("/unglamorous")({
   head: () => ({
     meta: [
-      { title: "Unglamorous Mundane — Kat Espinosa, Designer" },
+      { title: "Unglamorous Mundane — Kat Espinosa, UX Designer Manila" },
       {
         name: "description",
         content:
-          "A small archive of unglamorous, ordinary moments — photographs by Kat Espinosa, designer based in Metro Manila.",
+          "A small archive of unglamorous, ordinary moments — photographs by Kat Espinosa, UX designer in Manila, Philippines.",
       },
       { property: "og:title", content: "Unglamorous Mundane — Kat Espinosa" },
       {
         property: "og:description",
         content:
-          "A small archive of unglamorous, ordinary moments. Photographs from the Philippines.",
+          "A small archive of ordinary moments. Photographs from Kat Espinosa, UX designer in Manila.",
       },
     ],
   }),

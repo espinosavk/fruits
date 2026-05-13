@@ -9,11 +9,11 @@ import flowerGif from "@/assets/flower.gif";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Kat Espinosa · Designer" },
+      { title: "Kat Espinosa — UX Designer in Manila" },
       {
         name: "description",
         content:
-          "Kat Espinosa is a designer based in Metro Manila. UX design, product design, notes on the ecology of ideas. Designer, walker, houseplant.",
+          "Kat Espinosa is a UX designer based in Manila, Philippines. Product design, design systems, notes on the ecology of ideas. Designer, walker, houseplant.",
       },
     ],
   }),
@@ -105,7 +105,7 @@ function Index() {
         <h1 className="kat-name">Kat Espinosa</h1>
 
         <ul className="kat-bio">
-          <li>designer</li>
+          <li>ux designer</li>
           <li>walker</li>
           <li>houseplant</li>
         </ul>

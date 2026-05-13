@@ -7,17 +7,17 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 export const Route = createFileRoute("/ecology")({
   head: () => ({
     meta: [
-      { title: "Ecology of Ideas — Kat Espinosa, Designer" },
+      { title: "Ecology of Ideas — Kat Espinosa, UX Designer Manila" },
       {
         name: "description",
         content:
-          "Notes on design, UX, and the ecology of ideas — by Kat Espinosa, designer based in Metro Manila.",
+          "Notes on UX design and the ecology of ideas — by Kat Espinosa, UX designer in Manila, Philippines.",
       },
       { property: "og:title", content: "Ecology of Ideas — Kat Espinosa" },
       {
         property: "og:description",
         content:
-          "Notes on design, UX, and the ecology of ideas — by Kat Espinosa.",
+          "Notes on UX design and the ecology of ideas — by Kat Espinosa, UX designer in Manila.",
       },
     ],
   }),
