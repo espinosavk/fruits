@@ -24,12 +24,18 @@ const LOCATION = { lat: 14.5995, lon: 120.9842, tz: "Asia/Manila" };
 
 function fmtDate(d: Date) {
   return new Intl.DateTimeFormat("en-US", {
-    month: "numeric", day: "numeric", year: "2-digit", timeZone: LOCATION.tz,
+    month: "numeric",
+    day: "numeric",
+    year: "2-digit",
+    timeZone: LOCATION.tz,
   }).format(d);
 }
 function fmtTime(d: Date) {
   return new Intl.DateTimeFormat("en-US", {
-    hour: "numeric", minute: "2-digit", hour12: true, timeZone: LOCATION.tz,
+    hour: "numeric",
+    minute: "2-digit",
+    hour12: true,
+    timeZone: LOCATION.tz,
   }).format(d);
 }
 function describeWeather(code: number) {
@@ -54,7 +60,10 @@ function describeRain(prob: number | null | undefined) {
   return "with rain expected";
 }
 function fmtSunTime(iso: string) {
-  const [h, m] = iso.split("T")[1].split(":").map((s) => parseInt(s, 10));
+  const [h, m] = iso
+    .split("T")[1]
+    .split(":")
+    .map((s) => parseInt(s, 10));
   const period = h >= 12 ? "pm" : "am";
   const hour = h === 0 ? 12 : h > 12 ? h - 12 : h;
   return `${hour}:${String(m).padStart(2, "0")} ${period}`;
@@ -89,7 +98,9 @@ function Index() {
         const sunriseISO = data.daily?.sunrise?.[0];
         const sunsetISO = data.daily?.sunset?.[0];
         if (code != null) {
-          setWeather(`${describeWeather(code)} ${describeRain(rainProb)}.`.replace(/\s+\./, ".").trim());
+          setWeather(
+            `${describeWeather(code)} ${describeRain(rainProb)}.`.replace(/\s+\./, ".").trim(),
+          );
         }
         if (sunriseISO) setSunrise(fmtSunTime(sunriseISO));
         if (sunsetISO) setSunset(fmtSunTime(sunsetISO));
@@ -111,10 +122,14 @@ function Index() {
         </ul>
 
         <div className="kat-section">
-          <h2>Today, <span>{now ? fmtDate(now) : "—"}</span></h2>
+          <h2>
+            Today, <span>{now ? fmtDate(now) : "—"}</span>
+          </h2>
           <p>
-            It’s <span>{now ? fmtTime(now) : "—"}</span> in Metro Manila, Philippines.<br />
-            <span>{weather}</span><br />
+            It’s <span>{now ? fmtTime(now) : "—"}</span> in Metro Manila, Philippines.
+            <br />
+            <span>{weather}</span>
+            <br />
             🌅 Sunrise: <span>{sunrise}</span> &nbsp;🌇 Sunset: <span>{sunset}</span>
           </p>
         </div>
@@ -154,20 +169,43 @@ function Index() {
 
         <div className="kat-section">
           <h2>Day job</h2>
-          <p>Web and content design for B2B firms: <a className="kat-link" href="https://moonfrank.com" target="_blank" rel="noopener noreferrer">moonfrank.com</a></p>
+          <p>
+            Web and content design for B2B firms:{" "}
+            <a
+              className="kat-link"
+              href="https://moonfrank.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              moonfrank.com
+            </a>
+          </p>
         </div>
 
         <div className="kat-section">
           <h2>Introverted but willing to talk about</h2>
-          <p>Design as sense-making, typography: times new romans, comic sans, transformative experiences, architecture, fermentation, UX design, permaculture, meditation, birds, moss, memory, musicking, clouds</p>
+          <p>
+            Design as sense-making, typography: times new romans, comic sans, transformative
+            experiences, architecture, fermentation, UX design, permaculture, meditation, birds,
+            moss, memory, musicking, clouds
+          </p>
         </div>
 
         <div className="kat-section">
           <h2>Links</h2>
           <nav className="kat-links">
-            <Link to="/ecology"><span className="label">Ecology of Ideas </span><span className="arrow">→</span></Link>
-            <Link to="/unglamorous"><span className="label">Unglamorous mundane </span><span className="arrow">→</span></Link>
-            <a href="mailto:kat@moonfrank.com"><span className="label">Contact: kat@moonfrank.com </span><span className="arrow">→</span></a>
+            <Link to="/ecology">
+              <span className="label">Ecology of Ideas </span>
+              <span className="arrow">→</span>
+            </Link>
+            <Link to="/unglamorous">
+              <span className="label">Unglamorous mundane </span>
+              <span className="arrow">→</span>
+            </Link>
+            <a href="mailto:kat@moonfrank.com">
+              <span className="label">Contact: kat@moonfrank.com </span>
+              <span className="arrow">→</span>
+            </a>
           </nav>
         </div>
 
@@ -177,8 +215,7 @@ function Index() {
           ★★★☆
           <br />
           “pretty good at design but pretty bad at cooking”
-          <br />
-          — <em>Doris, my mother</em>
+          <br />— <em>Doris, my mother</em>
         </p>
       </div>
     </div>

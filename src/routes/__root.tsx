@@ -6,6 +6,7 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
+import { Analytics } from "@vercel/analytics/react";
 
 import appCss from "../styles.css?url";
 
@@ -111,8 +112,7 @@ export const Route = createRootRoute({
       { property: "og:title", content: "Kat Espinosa — UX Designer in Manila" },
       {
         property: "og:description",
-        content:
-          "UX designer in Manila helping B2B firms communicate. Web design, content design.",
+        content: "UX designer in Manila helping B2B firms communicate. Web design, content design.",
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: SITE_URL },
@@ -166,6 +166,7 @@ function RootShell({ children }: { children: React.ReactNode }) {
       <body>
         {children}
         <Scripts />
+        <Analytics />
       </body>
     </html>
   );

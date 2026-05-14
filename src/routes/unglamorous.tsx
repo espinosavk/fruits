@@ -65,37 +65,104 @@ type Tile = {
 //   HUGE      6×6  (~580 × 530)   primary anchor (landscape)
 const tiles: Tile[] = [
   // ─── Band 1 — Top ─────────────────────────────────────────────
-  { src: m1,  alt: "", caption: "a small visitor, cebu",   col: "10 / span 2", row: "1 / span 2"  },
-  { src: m14, alt: "", caption: "only cloud, el nido",           col: "6 / span 3",  row: "3 / span 4"  },
-  { src: m3,  alt: "", caption: "bloom where you are planted (edsa)",       col: "1 / span 3",  row: "5 / span 3"  },
-  { src: m12, alt: "", caption: "a cloud without u is just a clod",           col: "10 / span 2", row: "6 / span 2"  },
-  { src: m4,  alt: "", caption: "not even solomon in all his hustle was dressed as this",  col: "9 / span 3",  row: "10 / span 3" },
+  { src: m1, alt: "", caption: "a small visitor, cebu", col: "10 / span 2", row: "1 / span 2" },
+  { src: m14, alt: "", caption: "only cloud, el nido", col: "6 / span 3", row: "3 / span 4" },
+  {
+    src: m3,
+    alt: "",
+    caption: "bloom where you are planted (edsa)",
+    col: "1 / span 3",
+    row: "5 / span 3",
+  },
+  {
+    src: m12,
+    alt: "",
+    caption: "a cloud without u is just a clod",
+    col: "10 / span 2",
+    row: "6 / span 2",
+  },
+  {
+    src: m4,
+    alt: "",
+    caption: "not even solomon in all his hustle was dressed as this",
+    col: "9 / span 3",
+    row: "10 / span 3",
+  },
 
   // ─── Band 2 — HUGE anchor + tech meme ─────────────────────────
-  { src: m9,  alt: "", caption: "life at the edges",             col: "1 / span 6",  row: "15 / span 6" },
-  { src: m17, alt: "", caption: "tech support",      col: "9 / span 3",  row: "18 / span 4", hasText: true },
+  { src: m9, alt: "", caption: "life at the edges", col: "1 / span 6", row: "15 / span 6" },
+  {
+    src: m17,
+    alt: "",
+    caption: "tech support",
+    col: "9 / span 3",
+    row: "18 / span 4",
+    hasText: true,
+  },
 
   // ─── Band 3 — Middle: one tall portrait alone ─────────────────
-  { src: m20, alt: "", caption: "soft landing on you",   col: "5 / span 3",  row: "25 / span 5" },
+  { src: m20, alt: "", caption: "soft landing on you", col: "5 / span 3", row: "25 / span 5" },
 
   // ─── Band 4 — Two anchors offset ──────────────────────────────
-  { src: m5,  alt: "", caption: "old house from carcar, cebu",           col: "1 / span 3",  row: "32 / span 4" },
-  { src: m18, alt: "", caption: "rice is life. cabiao, nueva ecija",           col: "7 / span 5",  row: "34 / span 4" },
+  {
+    src: m5,
+    alt: "",
+    caption: "old house from carcar, cebu",
+    col: "1 / span 3",
+    row: "32 / span 4",
+  },
+  {
+    src: m18,
+    alt: "",
+    caption: "rice is life. cabiao, nueva ecija",
+    col: "7 / span 5",
+    row: "34 / span 4",
+  },
 
   // ─── Band 5 — Tinies + small + wide ───────────────────────────
-  { src: m13, alt: "", caption: "mango trees from casa san miguel, zambales",     col: "1 / span 2",  row: "41 / span 2" },
-  { src: m6,  alt: "", caption: "anahaw leaf, batangas",        col: "10 / span 2", row: "41 / span 2" },
-  { src: m15, alt: "", caption: "birdy steps, danjugan island",       col: "5 / span 3",  row: "42 / span 3" },
-  { src: m11, alt: "", caption: "reef water sun glitter, davao",          col: "1 / span 5",  row: "46 / span 3" },
+  {
+    src: m13,
+    alt: "",
+    caption: "mango trees from casa san miguel, zambales",
+    col: "1 / span 2",
+    row: "41 / span 2",
+  },
+  { src: m6, alt: "", caption: "anahaw leaf, batangas", col: "10 / span 2", row: "41 / span 2" },
+  {
+    src: m15,
+    alt: "",
+    caption: "birdy steps, danjugan island",
+    col: "5 / span 3",
+    row: "42 / span 3",
+  },
+  {
+    src: m11,
+    alt: "",
+    caption: "reef water sun glitter, davao",
+    col: "1 / span 5",
+    row: "46 / span 3",
+  },
 
   // ─── Band 6 — Three staggered tinies + BIG anchor ─────────────
-  { src: m7,  alt: "", caption: "moth meditations, baguio",          col: "1 / span 2",  row: "52 / span 2" },
-  { src: m10, alt: "", caption: "light eater, qc",      col: "6 / span 2",  row: "53 / span 2" },
-  { src: m8,  alt: "", caption: "cat naps in the flowershop, cebu",            col: "10 / span 2", row: "54 / span 2" },
-  { src: m2,  alt: "", caption: "grass kintsugi, up diliman", col: "4 / span 5",  row: "58 / span 5" },
+  { src: m7, alt: "", caption: "moth meditations, baguio", col: "1 / span 2", row: "52 / span 2" },
+  { src: m10, alt: "", caption: "light eater, qc", col: "6 / span 2", row: "53 / span 2" },
+  {
+    src: m8,
+    alt: "",
+    caption: "cat naps in the flowershop, cebu",
+    col: "10 / span 2",
+    row: "54 / span 2",
+  },
+  {
+    src: m2,
+    alt: "",
+    caption: "grass kintsugi, up diliman",
+    col: "4 / span 5",
+    row: "58 / span 5",
+  },
 
   // ─── Band 7 — "The Walker" alone as the close ─────────────────
-  { src: m16, alt: "", caption: "",        col: "5 / span 4",  row: "66 / span 4", hasText: true },
+  { src: m16, alt: "", caption: "", col: "5 / span 4", row: "66 / span 4", hasText: true },
 ];
 
 // Derive a mobile size + edge-alignment from each tile's desktop grid

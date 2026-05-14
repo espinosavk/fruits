@@ -16,8 +16,7 @@ export const Route = createFileRoute("/ecology")({
       { property: "og:title", content: "Ecology of Ideas — Kat Espinosa" },
       {
         property: "og:description",
-        content:
-          "Notes on web design, content design, and B2B communication. By Kat Espinosa.",
+        content: "Notes on web design, content design, and B2B communication. By Kat Espinosa.",
       },
     ],
   }),
@@ -37,7 +36,9 @@ function EcologyPage() {
         <div className="kat-prose">
           {/* <img src={ecologyImg} alt="" className="kat-prose-img" /> */}
 
-          <p><em>Notes still finding their shape. Come back soon.</em></p>
+          <p>
+            <em>Notes still finding their shape. Come back soon.</em>
+          </p>
         </div>
       </div>
     </div>
