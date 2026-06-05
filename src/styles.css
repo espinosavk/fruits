@@ -489,6 +489,6 @@
   .kat-section, .kat-links { padding-left: 4px; }
   .kat-bio, .kat-fruits { padding-left: 24px; }
   .fruit-img { left: 130px; width: 90px; height: 135px; }
-  .kat-avatar { width: 64px; height: 64px; }
+  .kat-avatar { width: 80px; height: 80px; }
   .kat-name-row { gap: 16px; }
 }
