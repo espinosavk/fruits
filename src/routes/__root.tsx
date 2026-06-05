@@ -76,6 +76,13 @@ const personSchema = {
   alternateName: "Kat",
   jobTitle: "UX Designer",
   url: SITE_URL,
+  image: {
+    "@type": "ImageObject",
+    url: `${SITE_URL}/kat-espinosa.webp`,
+    width: 300,
+    height: 300,
+    caption: "Kat Espinosa, UX designer based in Manila",
+  },
   description:
     "Kat Espinosa is a UX designer in Manila working at the intersection of web design, content design, and how B2B firms communicate to their market.",
   address: {

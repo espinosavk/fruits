@@ -30,6 +30,171 @@
   margin: 0 0 16px;
   padding-left: 12.78px;
 }
+
+/* Color fade — hovering the name (or anywhere in the name row)
+   eases the name to link blue, paired with the avatar's hover
+   effect so both sides of the row respond as one unit. */
+.kat-name {
+  transition: color 0.3s ease;
+}
+.kat-name-row:hover .kat-name {
+  color: #0c3ec0;
+}
+/* Name + avatar sit on one row so the photo hugs the name naturally,
+   regardless of viewport width. Margin moves from .kat-name onto the
+   row so the bio's top spacing is preserved. */
+.kat-name-row {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  /* Shrink to content so the row's hover area = name + avatar only
+     (no dead space past the avatar that would falsely trigger hover). */
+  width: max-content;
+  max-width: 100%;
+  /* Negative bottom pulls the bio up under the name text; the 88px
+     avatar dominates the row height, so without this the bio sits
+     way below the visible name baseline. */
+  margin: 0 0 -16px;
+}
+.kat-name-row .kat-name { margin-bottom: 0; }
+
+/* Avatar — square photo with rounded corners, tilted at rest.
+   Hovering/focusing un-tilts it with a tiny scale + deeper shadow,
+   giving a small "pick me up" interaction without being loud. */
+.kat-avatar-wrap {
+  position: relative;
+  display: inline-block;
+  flex-shrink: 0;
+  line-height: 0; /* prevents img baseline gap */
+}
+
+/* Speech bubble — appears above the avatar on hover/focus.
+   White fill with a thin black outline + a small downward tail.
+   Italic Times to match the site's playful body voice. */
+.kat-bubble {
+  position: absolute;
+  bottom: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px) scale(0.92);
+  transform-origin: bottom center;
+  background: #fff;
+  border: 1.5px solid #000;
+  border-radius: 16px;
+  padding: 5px 14px 6px;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 15px;
+  font-style: italic;
+  line-height: 1.2;
+  color: #000;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 0.18s ease,
+    transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+/* Tail — a small white-filled square rotated 45°, anchored under
+   the bubble. Only two adjacent borders are set, so they land on
+   the diamond's lower edges and form the V. Sharing the bubble's
+   1.5px stroke guarantees a consistent line weight, and the
+   white fill masks the bubble's bottom border at the tail base. */
+.kat-bubble::before {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  background: #fff;
+  border-bottom: 1.5px solid #000;
+  border-right: 1.5px solid #000;
+  transform: translateX(-50%) rotate(45deg);
+}
+.kat-avatar-wrap:hover .kat-bubble,
+.kat-avatar-wrap:focus-within .kat-bubble,
+.kat-name-row:hover .kat-bubble,
+.kat-name-row.is-greeting .kat-bubble {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0) scale(1);
+}
+
+/* Typewriter reveal — the inner span starts at 0 width and grows in
+   discrete steps on hover, with a blinking caret to sell the effect.
+   `steps(11)` matches the 11 chars in "what's up??". */
+.kat-bubble-text {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  vertical-align: top;
+  max-width: 0;
+  border-right: 1.5px solid transparent;
+}
+.kat-avatar-wrap:hover .kat-bubble-text,
+.kat-avatar-wrap:focus-within .kat-bubble-text,
+.kat-name-row:hover .kat-bubble-text,
+.kat-name-row.is-greeting .kat-bubble-text {
+  animation:
+    kat-type 0.7s steps(11, start) forwards,
+    kat-caret 0.55s steps(2, end) infinite;
+}
+@keyframes kat-type {
+  from { max-width: 0; }
+  to { max-width: 6.2em; }
+}
+@keyframes kat-caret {
+  0%, 100% { border-right-color: #000; }
+  50% { border-right-color: transparent; }
+}
+
+.kat-avatar {
+  width: 88px;
+  height: 88px;
+  border-radius: 12px;
+  object-fit: cover;
+  transform: rotate(5deg);
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  cursor: pointer;
+  outline: none;
+}
+.kat-avatar:hover,
+.kat-avatar:focus-visible,
+.kat-name-row:hover .kat-avatar,
+.kat-name-row.is-greeting .kat-avatar {
+  transform: rotate(0deg) scale(1.05);
+}
+.kat-avatar:active {
+  transform: rotate(3deg) scale(0.98);
+  transition-duration: 0.15s;
+}
+@media (prefers-reduced-motion: reduce) {
+  .kat-avatar,
+  .kat-avatar:hover,
+  .kat-avatar:focus-visible,
+  .kat-avatar:active {
+    transition: none;
+    transform: rotate(5deg);
+  }
+  .kat-bubble {
+    transition: opacity 0.15s ease;
+    transform: translateX(-50%);
+  }
+  .kat-avatar-wrap:hover .kat-bubble,
+  .kat-avatar-wrap:focus-within .kat-bubble,
+  .kat-name-row:hover .kat-bubble {
+    transform: translateX(-50%);
+  }
+  /* Suppress the auto-greeting entirely for reduced-motion users —
+     no surprise bubble or scaled avatar before any interaction. */
+  .kat-name-row.is-greeting .kat-avatar { transform: rotate(5deg); }
+  .kat-name-row.is-greeting .kat-bubble { opacity: 0; }
+  .kat-bubble-text { max-width: 6.2em; border-right-color: transparent; }
+  .kat-avatar-wrap:hover .kat-bubble-text,
+  .kat-avatar-wrap:focus-within .kat-bubble-text,
+  .kat-name-row:hover .kat-bubble-text {
+    animation: none;
+  }
+}
+
 .kat-bio { list-style: disc; padding: 0 0 0 30px; margin: 0 0 56px; font-size: 18px; }
 .kat-bio li { margin: 0; }
 .kat-section { padding-left: 15px; margin-bottom: 48px; }
@@ -322,4 +487,6 @@
   .kat-section, .kat-links { padding-left: 4px; }
   .kat-bio, .kat-fruits { padding-left: 24px; }
   .fruit-img { left: 130px; width: 90px; height: 135px; }
+  .kat-avatar { width: 64px; height: 64px; }
+  .kat-name-row { gap: 16px; }
 }

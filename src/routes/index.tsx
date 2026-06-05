@@ -65,11 +65,24 @@ function Index() {
   const [weather, setWeather] = useState("Checking the sky…");
   const [sunrise, setSunrise] = useState("—");
   const [sunset, setSunset] = useState("—");
+  // One-time welcome: after a 1s pause for the page to settle, the
+  // avatar enters its hover state for ~2.4s, then returns to default.
+  // Like a small wave at the viewer once they've arrived.
+  const [isGreeting, setIsGreeting] = useState(false);
 
   useEffect(() => {
     setNow(new Date());
     const id = setInterval(() => setNow(new Date()), 30_000);
     return () => clearInterval(id);
+  }, []);
+
+  useEffect(() => {
+    const start = setTimeout(() => setIsGreeting(true), 1000);
+    const end = setTimeout(() => setIsGreeting(false), 1000 + 2400);
+    return () => {
+      clearTimeout(start);
+      clearTimeout(end);
+    };
   }, []);
 
   useEffect(() => {
@@ -102,7 +115,23 @@ function Index() {
   return (
     <div className="kat-body">
       <div className="kat-column">
-        <h1 className="kat-name">Kat Espinosa</h1>
+        <div className={`kat-name-row${isGreeting ? " is-greeting" : ""}`}>
+          <h1 className="kat-name">Kat Espinosa</h1>
+          <span className="kat-avatar-wrap">
+            <img
+              src="/kat-espinosa.webp"
+              alt="Kat Espinosa, UX designer in Manila"
+              className="kat-avatar"
+              width={88}
+              height={88}
+              loading="lazy"
+              tabIndex={0}
+            />
+            <span className="kat-bubble" aria-hidden="true">
+              <span className="kat-bubble-text">what’s up??</span>
+            </span>
+          </span>
+        </div>
 
         <ul className="kat-bio">
           <li>ux designer</li>
