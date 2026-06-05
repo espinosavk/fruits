@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import mangoImg from "@/assets/fruit-mango.webp";
 import santolImg from "@/assets/fruit-santol.webp";
 import watermelonImg from "@/assets/fruit-watermelon.webp";
@@ -65,10 +65,18 @@ function Index() {
   const [weather, setWeather] = useState("Checking the sky…");
   const [sunrise, setSunrise] = useState("—");
   const [sunset, setSunset] = useState("—");
-  // One-time welcome: after a 1s pause for the page to settle, the
-  // avatar enters its hover state for ~2.4s, then returns to default.
-  // Like a small wave at the viewer once they've arrived.
+  // Welcome wave: after a 1s pause, the avatar enters its hover state
+  // for ~2.4s, then returns to default. Re-triggerable on tap so mobile
+  // users (who can't hover) still get to see the bubble after the
+  // initial greeting.
   const [isGreeting, setIsGreeting] = useState(false);
+  const greetingEndTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const triggerGreeting = useCallback(() => {
+    if (greetingEndTimer.current) clearTimeout(greetingEndTimer.current);
+    setIsGreeting(true);
+    greetingEndTimer.current = setTimeout(() => setIsGreeting(false), 2400);
+  }, []);
 
   useEffect(() => {
     setNow(new Date());
@@ -77,13 +85,12 @@ function Index() {
   }, []);
 
   useEffect(() => {
-    const start = setTimeout(() => setIsGreeting(true), 1000);
-    const end = setTimeout(() => setIsGreeting(false), 1000 + 2400);
+    const start = setTimeout(triggerGreeting, 1000);
     return () => {
       clearTimeout(start);
-      clearTimeout(end);
+      if (greetingEndTimer.current) clearTimeout(greetingEndTimer.current);
     };
-  }, []);
+  }, [triggerGreeting]);
 
   useEffect(() => {
     (async () => {
@@ -115,7 +122,10 @@ function Index() {
   return (
     <div className="kat-body">
       <div className="kat-column">
-        <div className={`kat-name-row${isGreeting ? " is-greeting" : ""}`}>
+        <div
+          className={`kat-name-row${isGreeting ? " is-greeting" : ""}`}
+          onClick={triggerGreeting}
+        >
           <h1 className="kat-name">Kat Espinosa</h1>
           <span className="kat-avatar-wrap">
             <img

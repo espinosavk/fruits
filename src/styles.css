@@ -47,6 +47,8 @@
   display: flex;
   align-items: center;
   gap: 24px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
   /* Shrink to content so the row's hover area = name + avatar only
      (no dead space past the avatar that would falsely trigger hover). */
   width: max-content;
