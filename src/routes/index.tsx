@@ -149,7 +149,7 @@ function Index() {
         </div>
 
         <div className="kat-section">
-          <h2>Fruits in season</h2>
+          <h2>Favorite fruits in season</h2>
           <ul className="kat-fruits">
             <li className="fruit-item" tabIndex={0}>
               <span className="fruit-name">mango</span>
