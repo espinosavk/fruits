@@ -126,16 +126,15 @@ export const Route = createRootRoute({
       { property: "og:url", content: SITE_URL },
       { property: "og:locale", content: "en_US" },
       { property: "og:site_name", content: "Kat Espinosa" },
-      // OG image — portrait at 1200×1200 JPEG. Square JPG is universally
-      // accepted by scrapers (Apple/iMessage rejected the prior PNG with
-      // alpha + lots of whitespace, falling back to scraped page images).
-      { property: "og:image", content: `${SITE_URL}/kat-espinosa-og.jpg` },
+      // OG image — 1200×630 JPEG (FB/Twitter/iMessage standard size).
+      // Custom designed preview card; Apple rejected the prior alpha PNG.
+      { property: "og:image", content: `${SITE_URL}/og-kat.jpg` },
       { property: "og:image:type", content: "image/jpeg" },
       { property: "og:image:width", content: "1200" },
-      { property: "og:image:height", content: "1200" },
+      { property: "og:image:height", content: "630" },
       {
         property: "og:image:alt",
-        content: "Portrait of Kat Espinosa, UX designer in Manila",
+        content: "Kat Espinosa, UX designer in Manila",
       },
       // Twitter
       { name: "twitter:card", content: "summary_large_image" },
@@ -144,10 +143,10 @@ export const Route = createRootRoute({
         name: "twitter:description",
         content: "UX designer in Manila helping B2B firms communicate. Web + content design.",
       },
-      { name: "twitter:image", content: `${SITE_URL}/kat-espinosa-og.jpg` },
+      { name: "twitter:image", content: `${SITE_URL}/og-kat.jpg` },
       {
         name: "twitter:image:alt",
-        content: "Portrait of Kat Espinosa, UX designer in Manila",
+        content: "Kat Espinosa, UX designer in Manila",
       },
     ],
     links: [
