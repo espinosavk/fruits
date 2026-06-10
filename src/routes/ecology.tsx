@@ -34,10 +34,41 @@ function EcologyPage() {
       <div className="kat-column">
         <h1 className="kat-name kat-name--centered">Ecology of Ideas</h1>
 
-        <div className="kat-prose">
+        <div className="kat-prose kat-prose--centered">
           {/* <img src={ecologyImg} alt="" className="kat-prose-img" /> */}
 
-          <p><em>Notes still finding their shape. Come back soon.</em></p>
+          <p>
+            Work in progress. Eventually a place for ideas that have been
+            fermenting on my mind: design, nature, writing, books I have been
+            reading, and possibly the occasional good meme. Sign up if you
+            want to be in the loop.
+          </p>
+
+          <form
+            action="https://buttondown.com/api/emails/embed-subscribe/katespinosa"
+            method="post"
+            className="embeddable-buttondown-form kat-newsletter"
+          >
+            <label htmlFor="bd-email" className="kat-newsletter-title">
+              Where do I send the messenger pigeon?
+            </label>
+            <input
+              type="email"
+              name="email"
+              id="bd-email"
+              placeholder="Enter your favorite email"
+            />
+            <input type="submit" value="Subscribe" />
+            <p>
+              <a
+                href="https://buttondown.com/refer/katespinosa"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Powered by Buttondown.
+              </a>
+            </p>
+          </form>
         </div>
       </div>
     </div>

@@ -115,7 +115,8 @@
 .kat-avatar-wrap:hover .kat-bubble,
 .kat-avatar-wrap:focus-within .kat-bubble,
 .kat-name-row:hover .kat-bubble,
-.kat-name-row.is-greeting .kat-bubble {
+.kat-name-row.is-greeting .kat-bubble,
+.kat-name-row.is-speaking .kat-bubble {
   opacity: 1;
   transform: translateX(-50%) translateY(0) scale(1);
 }
@@ -134,14 +135,15 @@
 .kat-avatar-wrap:hover .kat-bubble-text,
 .kat-avatar-wrap:focus-within .kat-bubble-text,
 .kat-name-row:hover .kat-bubble-text,
-.kat-name-row.is-greeting .kat-bubble-text {
+.kat-name-row.is-greeting .kat-bubble-text,
+.kat-name-row.is-speaking .kat-bubble-text {
   animation:
     kat-type 0.7s steps(11, start) forwards,
     kat-caret 0.55s steps(2, end) infinite;
 }
 @keyframes kat-type {
   from { max-width: 0; }
-  to { max-width: 6.2em; }
+  to { max-width: var(--bubble-w, 6.2em); }
 }
 @keyframes kat-caret {
   0%, 100% { border-right-color: #000; }
@@ -161,7 +163,8 @@
 .kat-avatar:hover,
 .kat-avatar:focus-visible,
 .kat-name-row:hover .kat-avatar,
-.kat-name-row.is-greeting .kat-avatar {
+.kat-name-row.is-greeting .kat-avatar,
+.kat-name-row.is-speaking .kat-avatar {
   transform: rotate(0deg) scale(1.05);
 }
 .kat-avatar:active {
@@ -182,23 +185,58 @@
   }
   .kat-avatar-wrap:hover .kat-bubble,
   .kat-avatar-wrap:focus-within .kat-bubble,
-  .kat-name-row:hover .kat-bubble {
+  .kat-name-row:hover .kat-bubble,
+  .kat-name-row.is-speaking .kat-bubble {
     transform: translateX(-50%);
   }
   /* Suppress the auto-greeting entirely for reduced-motion users —
-     no surprise bubble or scaled avatar before any interaction. */
-  .kat-name-row.is-greeting .kat-avatar { transform: rotate(5deg); }
+     no surprise bubble or scaled avatar before any interaction.
+     (.is-speaking is user-initiated, so its bubble stays visible;
+     only the avatar movement is dropped.) */
+  .kat-name-row.is-greeting .kat-avatar,
+  .kat-name-row.is-speaking .kat-avatar { transform: rotate(5deg); }
   .kat-name-row.is-greeting .kat-bubble { opacity: 0; }
-  .kat-bubble-text { max-width: 6.2em; border-right-color: transparent; }
+  .kat-bubble-text { max-width: var(--bubble-w, 6.2em); border-right-color: transparent; }
   .kat-avatar-wrap:hover .kat-bubble-text,
   .kat-avatar-wrap:focus-within .kat-bubble-text,
-  .kat-name-row:hover .kat-bubble-text {
+  .kat-name-row:hover .kat-bubble-text,
+  .kat-name-row.is-speaking .kat-bubble-text {
     animation: none;
   }
 }
 
 .kat-bio { list-style: disc; padding: 0 0 0 30px; margin: 0 0 56px; font-size: 18px; }
 .kat-bio li { margin: 0; }
+
+/* Bio lines are hover-able: hovering (or focusing, or tapping) one
+   makes the avatar's speech bubble say that line's whisper — the
+   photo narrates the bio. The dotted underline is the standing
+   "there's more here" cue. */
+/* .kat-say marks any inline phrase that makes the avatar speak on
+   hover (e.g. the Mark Strand weather aside). Same cue as bio terms. */
+.kat-bio-term,
+.kat-say {
+  text-decoration: underline dotted;
+  text-decoration-thickness: 1px;
+  text-decoration-color: #9a9a9a;
+  text-underline-offset: 3px;
+  cursor: help;
+}
+.kat-say { outline: none; }
+.kat-bio li {
+  width: max-content;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Small parenthetical hints in headings and the footer quote. */
+.kat-hint {
+  font-family: "Times New Roman", Times, serif;
+  font-weight: normal;
+  font-style: italic;
+  font-size: 13px;
+  color: #767676;
+}
 .kat-section { padding-left: 15px; margin-bottom: 48px; }
 .kat-section h2 {
   font-family: Arial, sans-serif;
@@ -208,6 +246,68 @@
   margin: 0 0 16px;
 }
 .kat-section p { margin: 0; font-size: 18px; line-height: 1.4; }
+
+/* The "Today" report — weather sets the scene, then the time, then
+   the dice-led Kat line as the punchline. Paragraph gaps give each
+   line room to land. */
+.kat-today p { margin: 0 0 14px; }
+.kat-today p:last-child { margin-bottom: 0; }
+
+/* 🎲 — reroll button for the "Kat is probably" line. Bare emoji, no
+   button chrome; spins on every roll (the face span is remounted per
+   roll, replaying the animation — including once on load, which
+   doubles as the affordance nudge). */
+.kat-dice {
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  font-size: 17px;
+  line-height: 1;
+  cursor: pointer;
+  vertical-align: -1px;
+  -webkit-tap-highlight-color: transparent;
+}
+.kat-dice-face {
+  display: inline-block;
+  animation: kat-dice-roll 0.5s ease;
+  transition: transform 0.2s ease;
+}
+.kat-dice:hover .kat-dice-face,
+.kat-dice:focus-visible .kat-dice-face,
+.kat-roll:hover .kat-dice-face {
+  transform: rotate(-15deg) scale(1.15);
+}
+
+/* The whole "Kat is probably" line is the click target, not just the
+   die. Shrink to content so dead space past the sentence stays inert.
+   The handle text is set like the site's other blue interactives
+   (fruit names) so it reads as clickable at a glance. */
+.kat-today .kat-roll {
+  cursor: pointer;
+  width: max-content;
+  max-width: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+.kat-roll-text {
+  color: #0c3ec0;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  transition: color 0.2s ease;
+}
+.kat-roll:hover .kat-roll-text { color: #062a8c; }
+@keyframes kat-dice-roll {
+  from { transform: rotate(0deg); }
+  60% { transform: rotate(280deg) scale(1.3); }
+  to { transform: rotate(360deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .kat-dice-face { animation: none; transition: none; }
+  .kat-dice:hover .kat-dice-face,
+  .kat-dice:focus-visible .kat-dice-face { transform: none; }
+}
 .kat-fruits {
   list-style: disc;
   padding: 0 0 0 30px;
@@ -229,12 +329,16 @@
 }
 .fruit-item:hover .fruit-name,
 .fruit-item:focus-within .fruit-name { color: #062a8c; }
+/* Hover reveal: on wide screens the photo floats in the empty margin
+   to the LEFT of the column, with the review stacked underneath it. */
 .fruit-img {
   position: absolute;
-  left: 165px;
+  right: calc(100% + 32px);
   top: 50%;
-  width: 130px;
-  height: 195px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 180px;
   pointer-events: none;
   opacity: 0;
   transform: translate(0, -50%);
@@ -245,7 +349,38 @@
   opacity: 1;
 }
 .fruit-img svg,
-.fruit-img img { width: 100%; height: 100%; display: block; object-fit: contain; }
+.fruit-img img { width: 100%; height: auto; display: block; }
+
+/* The review — stars stacked over the verdict, under the photo. */
+.fruit-note {
+  font-family: "Times New Roman", Times, serif;
+  font-style: italic;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #1a1a1a;
+}
+.fruit-stars {
+  display: block;
+  font-style: normal;
+  letter-spacing: 2px;
+}
+
+/* Not enough left margin below ~920px — photo + review move back to
+   the right of the list as a side-by-side row. */
+@media (max-width: 920px) {
+  .fruit-img {
+    right: auto;
+    left: 165px;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    width: max-content;
+    height: 195px;
+  }
+  .fruit-img svg,
+  .fruit-img img { width: 130px; height: 100%; object-fit: contain; }
+  .fruit-note { max-width: 150px; }
+}
 .kat-links {
   display: flex;
   flex-direction: column;
@@ -275,10 +410,59 @@
 .kat-links a:hover .arrow { transform: translateX(4px); }
 .kat-flower {
   display: block;
-  margin: 64px 0 0 14.92px;
   width: 96px;
   height: auto;
   image-rendering: pixelated;
+  animation: kat-sprout 0.35s ease;
+}
+/* New cuttings pop in from the soil. */
+@keyframes kat-sprout {
+  from { transform: scale(0.3); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+/* The propagation bed — flowers accumulate left to right, wrapping
+   when the row fills. The caption tags along after the last bloom.
+   The WHOLE strip (flowers, caption, gaps) is the click target, so
+   "click to propagate" works wherever you aim. */
+.kat-garden {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 4px;
+  margin: 64px 0 0 14.92px;
+  cursor: pointer;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+/* At capacity, clicks do nothing — drop the invitation cursor. */
+.kat-garden--full { cursor: default; }
+.kat-garden-note {
+  font-family: "Times New Roman", Times, serif;
+  font-style: italic;
+  font-size: 13px;
+  color: #767676;
+  align-self: center;
+  margin-left: 8px;
+}
+/* "(start over)" — same quiet voice as the note, dotted underline to
+   match the site's in-place-interaction cue. */
+.kat-garden-reset {
+  border: none;
+  background: none;
+  padding: 0;
+  margin-left: 8px;
+  font: inherit;
+  color: #767676;
+  cursor: pointer;
+  text-decoration: underline dotted;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  -webkit-tap-highlight-color: transparent;
+}
+.kat-garden-reset:hover,
+.kat-garden-reset:focus-visible { color: #1a1a1a; }
+@media (prefers-reduced-motion: reduce) {
+  .kat-flower { animation: none; }
 }
 .kat-quote {
   margin: 48px 0 0 14.92px;
@@ -286,7 +470,18 @@
   font-size: 14px;
   line-height: 1.5;
   color: #000;
+  cursor: pointer;
+  width: max-content;
+  max-width: 100%;
+  -webkit-tap-highlight-color: transparent;
 }
+/* Always faintly visible so the click affordance is discoverable;
+   brightens on hover as confirmation. */
+.kat-quote .kat-hint {
+  opacity: 0.55;
+  transition: opacity 0.25s ease;
+}
+.kat-quote:hover .kat-hint { opacity: 1; }
 
 .kat-back {
   display: inline-block;
@@ -313,17 +508,19 @@
 .kat-back:hover,
 .kat-back:focus-visible { color: #062a8c; }
 
-/* Inline link inside body paragraphs (e.g. moonfrank.com under "day job").
-   Matches the rest of the site's link vocabulary: blue, underlined. */
-.kat-link {
+/* Inline link inside body paragraphs (e.g. moonfrank.com under "day
+   job", the cloud-poem link in the weather line). Matches the rest of
+   the site's link vocabulary: blue, underlined. Scoped under
+   .kat-body so it outweighs the global `.kat-body a` reset. */
+.kat-body .kat-link {
   color: #0c3ec0;
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 2px;
   transition: color .2s ease;
 }
-.kat-link:hover,
-.kat-link:focus-visible { color: #062a8c; }
+.kat-body .kat-link:hover,
+.kat-body .kat-link:focus-visible { color: #062a8c; }
 /* Floating variant — pinned to the page corner so the back link is in
    the same place on every subpage, regardless of the page's content
    width (narrow column vs full-bleed grid). */
@@ -372,6 +569,80 @@
   display: block;
   margin: 0 0 8px;
 }
+
+/* Centered variant for pages whose content is a single block (e.g.
+   /ecology) — kills the prose indent and centers text + children. */
+.kat-prose--centered {
+  padding-left: 0;
+  margin: 0 auto;
+  text-align: center;
+}
+.kat-prose--centered .kat-newsletter { align-items: center; }
+
+/* Buttondown signup on /ecology — plain Times, 1.5px black strokes,
+   no rounded corners. Matches the bubble/avatar line weight. */
+.kat-newsletter {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 8px;
+}
+/* The form's question doubles as its label — set like the site's
+   bold Arial section headings. */
+.kat-newsletter-title {
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 1.4;
+  margin-top: 16px;
+}
+.kat-newsletter input[type="email"]::placeholder {
+  font-style: italic;
+  color: #767676;
+}
+.kat-newsletter input[type="email"] {
+  font: inherit;
+  font-size: 16px;
+  padding: 6px 10px;
+  border: 1.5px solid #000;
+  border-radius: 0;
+  background: #fff;
+  color: #000;
+  width: min(320px, 100%);
+}
+.kat-newsletter input[type="email"]:focus-visible {
+  outline: 2px solid #0c3ec0;
+  outline-offset: 1px;
+}
+.kat-newsletter input[type="submit"] {
+  font: inherit;
+  font-size: 16px;
+  padding: 6px 16px;
+  border: 1.5px solid #000;
+  border-radius: 0;
+  background: #fff;
+  color: #000;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.kat-newsletter input[type="submit"]:hover,
+.kat-newsletter input[type="submit"]:focus-visible {
+  background: #000;
+  color: #fff;
+}
+.kat-newsletter p {
+  margin: 0;
+  font-size: 12px;
+  color: #767676;
+}
+.kat-newsletter p a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+.kat-newsletter p a:hover { color: #1a1a1a; }
 .kat-column-wide { width: min(820px, 100%); }
 .mundane-page {
   width: 100%;
@@ -488,7 +759,9 @@
   .kat-name { font-size: 28px; padding-left: 4px; }
   .kat-section, .kat-links { padding-left: 4px; }
   .kat-bio, .kat-fruits { padding-left: 24px; }
-  .fruit-img { left: 130px; width: 90px; height: 135px; }
+  .fruit-img { left: 130px; height: 135px; gap: 8px; }
+  .fruit-img img { width: 90px; }
+  .fruit-note { font-size: 12px; max-width: 100px; }
   .kat-avatar { width: 80px; height: 80px; }
   .kat-name-row { gap: 16px; }
 }
