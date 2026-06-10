@@ -16,6 +16,7 @@ export const Route = createFileRoute("/")({
           "Kat Espinosa is a UX designer in Manila working at the intersection of web design, content design, and how B2B firms communicate to their market.",
       },
     ],
+    links: [{ rel: "canonical", href: "https://katespinosa.com" }],
   }),
   component: Index,
 });
@@ -26,10 +27,11 @@ const LOCATION = { lat: 14.5995, lon: 120.9842, tz: "Asia/Manila" };
 // name row. The last line closes the bit before the loop restarts.
 const BUBBLE_PHRASES = [
   "what’s up??",
-  "have you eaten?",
   "you hovered. bold.",
+  "greetings, earthling!",
   "lovely to see you here",
   "kamusta??",
+  "have you eaten?",
   "ok, back to work",
 ];
 

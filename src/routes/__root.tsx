@@ -85,6 +85,12 @@ const personSchema = {
   },
   description:
     "Kat Espinosa is a UX designer in Manila working at the intersection of web design, content design, and how B2B firms communicate to their market.",
+  // Established profiles — ties the site to the same "Kat Espinosa"
+  // entity Google already knows from these platforms.
+  sameAs: [
+    "https://www.linkedin.com/in/kat-espinosa/",
+    "https://twitter.com/_katespinosa",
+  ],
   address: {
     "@type": "PostalAddress",
     addressLocality: "Manila",
@@ -151,7 +157,9 @@ export const Route = createRootRoute({
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      { rel: "canonical", href: SITE_URL },
+      // Canonical is per-route (set in each route's head) — a single
+      // site-wide canonical told Google the subpages were duplicates
+      // of the homepage.
       { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
     ],
     scripts: [

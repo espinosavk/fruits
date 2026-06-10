@@ -34,7 +34,9 @@ export const Route = createFileRoute("/unglamorous")({
         content:
           "A small archive of ordinary moments. Photographs from Kat Espinosa, UX designer in Manila.",
       },
+      { property: "og:url", content: "https://katespinosa.com/unglamorous" },
     ],
+    links: [{ rel: "canonical", href: "https://katespinosa.com/unglamorous" }],
   }),
   component: UnglamorousPage,
 });

@@ -19,7 +19,9 @@ export const Route = createFileRoute("/ecology")({
         content:
           "Notes on web design, content design, and B2B communication. By Kat Espinosa.",
       },
+      { property: "og:url", content: "https://katespinosa.com/ecology" },
     ],
+    links: [{ rel: "canonical", href: "https://katespinosa.com/ecology" }],
   }),
   component: EcologyPage,
 });
