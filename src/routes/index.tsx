@@ -21,7 +21,9 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const LOCATION = { lat: 14.5995, lon: 120.9842, tz: "Asia/Manila" };
+// Quezon City (where Kat actually is) — the page copy stays at the
+// "Metro Manila" altitude on purpose; only the forecast is local.
+const LOCATION = { lat: 14.676, lon: 121.0437, tz: "Asia/Manila" };
 
 // The bubble cycles through these — one step per hover or tap on the
 // name row. The last line closes the bit before the loop restarts.
