@@ -257,6 +257,10 @@ function Index() {
   // users (who can't hover) still get to see the bubble after the
   // initial greeting. Each trigger advances to the next phrase.
   const [isGreeting, setIsGreeting] = useState(false);
+  // True only during the automatic load wave — it carries a CSS class
+  // that exempts the typewriter from reduced-motion (the handshake
+  // plays for everyone; taps and whispers stay static).
+  const [isWaving, setIsWaving] = useState(false);
   // While a bio line is hovered/focused, the bubble shows its whisper
   // instead of the greeting phrase.
   const [bioMsg, setBioMsg] = useState<string | null>(null);
@@ -296,15 +300,19 @@ function Index() {
     setPhraseIdx((i) => (i + 1) % BUBBLE_PHRASES.length);
   }, []);
 
-  const triggerGreeting = useCallback(() => {
+  const triggerGreeting = useCallback((opts?: { wave?: boolean }) => {
     if (greetingEndTimer.current) clearTimeout(greetingEndTimer.current);
     advanceGreeting();
     setIsGreeting(true);
+    setIsWaving(opts?.wave === true);
     // Touch devices get a longer beat — there's no idle hover to
     // re-trigger the bubble, so the load wave is the one chance to
     // see the typing effect land.
     const ms = window.matchMedia?.("(hover: none)").matches ? 3500 : 2400;
-    greetingEndTimer.current = setTimeout(() => setIsGreeting(false), ms);
+    greetingEndTimer.current = setTimeout(() => {
+      setIsGreeting(false);
+      setIsWaving(false);
+    }, ms);
   }, [advanceGreeting]);
 
   useEffect(() => {
@@ -314,7 +322,7 @@ function Index() {
   }, []);
 
   useEffect(() => {
-    const start = setTimeout(triggerGreeting, 1000);
+    const start = setTimeout(() => triggerGreeting({ wave: true }), 1000);
     return () => {
       clearTimeout(start);
       if (greetingEndTimer.current) clearTimeout(greetingEndTimer.current);
@@ -382,8 +390,8 @@ function Index() {
     <div className="kat-body">
       <div className="kat-column">
         <div
-          className={`kat-name-row${isGreeting ? " is-greeting" : ""}${bioMsg ? " is-speaking" : ""}`}
-          onClick={triggerGreeting}
+          className={`kat-name-row${isGreeting ? " is-greeting" : ""}${isGreeting && isWaving ? " is-waving" : ""}${bioMsg ? " is-speaking" : ""}`}
+          onClick={() => triggerGreeting()}
           onMouseEnter={advanceGreeting}
         >
           <h1 className="kat-name">Kat Espinosa</h1>

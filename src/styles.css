@@ -203,6 +203,14 @@
   .kat-name-row.is-speaking .kat-bubble-text {
     animation: none;
   }
+  /* Exception: the one-time load wave keeps its typewriter — a
+     contained 0.7s text reveal is the site's handshake. Everything
+     after it (taps, hovers, whispers) stays static. */
+  .kat-name-row.is-waving .kat-bubble-text {
+    animation:
+      kat-type 0.7s steps(11, start) forwards,
+      kat-caret 0.55s steps(2, end) infinite;
+  }
 }
 
 .kat-bio { list-style: disc; padding: 0 0 0 30px; margin: 0 0 56px; font-size: 18px; }
