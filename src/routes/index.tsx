@@ -300,7 +300,11 @@ function Index() {
     if (greetingEndTimer.current) clearTimeout(greetingEndTimer.current);
     advanceGreeting();
     setIsGreeting(true);
-    greetingEndTimer.current = setTimeout(() => setIsGreeting(false), 2400);
+    // Touch devices get a longer beat — there's no idle hover to
+    // re-trigger the bubble, so the load wave is the one chance to
+    // see the typing effect land.
+    const ms = window.matchMedia?.("(hover: none)").matches ? 3500 : 2400;
+    greetingEndTimer.current = setTimeout(() => setIsGreeting(false), ms);
   }, [advanceGreeting]);
 
   useEffect(() => {
