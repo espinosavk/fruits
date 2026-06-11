@@ -411,18 +411,23 @@ function Index() {
         </div>
 
         <ul className="kat-bio">
+          {/* Real <button>s, not spans — iOS WebKit only delivers tap
+              events to elements it deems clickable, and cursor:help
+              spans don't qualify. */}
           {BIO.map(([term, note]) => (
-            <li
-              key={term}
-              tabIndex={0}
-              aria-label={`${term} — ${note}`}
-              onMouseEnter={() => speakNote(note)}
-              onMouseLeave={quietNote}
-              onFocus={() => speakNote(note)}
-              onBlur={quietNote}
-              onClick={() => tapNote(note)}
-            >
-              <span className="kat-bio-term">{term}</span>
+            <li key={term}>
+              <button
+                type="button"
+                className="kat-bio-term"
+                aria-label={`${term} — ${note}`}
+                onMouseEnter={() => speakNote(note)}
+                onMouseLeave={quietNote}
+                onFocus={() => speakNote(note)}
+                onBlur={quietNote}
+                onClick={() => tapNote(note)}
+              >
+                {term}
+              </button>
             </li>
           ))}
         </ul>
@@ -440,9 +445,9 @@ function Index() {
                     <>
                       {" "}
                       {weatherLine.aside.say ? (
-                        <span
+                        <button
+                          type="button"
                           className="kat-say"
-                          tabIndex={0}
                           aria-label={`${weatherLine.aside.text} — ${weatherLine.aside.say}`}
                           onMouseEnter={() => speakNote(weatherLine.aside!.say!)}
                           onMouseLeave={quietNote}
@@ -451,7 +456,7 @@ function Index() {
                           onClick={() => tapNote(weatherLine.aside!.say!)}
                         >
                           {weatherLine.aside.text}
-                        </span>
+                        </button>
                       ) : weatherLine.aside.href ? (
                         <a
                           className="kat-link"

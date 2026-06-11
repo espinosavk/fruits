@@ -189,17 +189,17 @@
   .kat-name-row.is-speaking .kat-bubble {
     transform: translateX(-50%);
   }
-  /* Suppress the auto-greeting entirely for reduced-motion users —
-     no surprise bubble or scaled avatar before any interaction.
-     (.is-speaking is user-initiated, so its bubble stays visible;
-     only the avatar movement is dropped.) */
+  /* Reduced motion keeps the bubble (it's content, not decoration) —
+     it appears statically with full text; only the avatar movement
+     and typing/scale animations are dropped. */
   .kat-name-row.is-greeting .kat-avatar,
   .kat-name-row.is-speaking .kat-avatar { transform: rotate(5deg); }
-  .kat-name-row.is-greeting .kat-bubble { opacity: 0; }
+  .kat-name-row.is-greeting .kat-bubble { transform: translateX(-50%); }
   .kat-bubble-text { max-width: var(--bubble-w, 6.2em); border-right-color: transparent; }
   .kat-avatar-wrap:hover .kat-bubble-text,
   .kat-avatar-wrap:focus-within .kat-bubble-text,
   .kat-name-row:hover .kat-bubble-text,
+  .kat-name-row.is-greeting .kat-bubble-text,
   .kat-name-row.is-speaking .kat-bubble-text {
     animation: none;
   }
@@ -213,15 +213,27 @@
    photo narrates the bio. The dotted underline is the standing
    "there's more here" cue. */
 /* .kat-say marks any inline phrase that makes the avatar speak on
-   hover (e.g. the Mark Strand weather aside). Same cue as bio terms. */
+   hover (e.g. the Mark Strand weather aside). Same cue as bio terms.
+   Both are real <button>s — iOS WebKit only delivers taps to elements
+   it deems clickable — so reset the native button chrome to plain
+   inline text. */
 .kat-bio-term,
 .kat-say {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  text-align: left;
   text-decoration: underline dotted;
   text-decoration-thickness: 1px;
   text-decoration-color: #9a9a9a;
   text-underline-offset: 3px;
   cursor: help;
+  -webkit-tap-highlight-color: transparent;
 }
+.kat-bio-term { outline: none; }
 .kat-say { outline: none; }
 .kat-bio li {
   width: max-content;
