@@ -108,12 +108,11 @@ function describeKat(hour: number, day: number, sky: Sky, feels: number | null) 
     return "walking anyway — the umbrella is mostly decorative.";
   if ((sky === "rain" || sky === "drizzle") && hour >= 18 && hour < 20)
     return "watching the rain like it’s prestige television.";
-  if (feels != null && sky !== "rain" && sky !== "drizzle") {
-    if (feels >= 40) return "standing directly in front of the electric fan, being dramatic.";
-    if (feels >= 37) return "moving exclusively between air-conditioned locations.";
-  }
+  // Meals and mornings outrank the heat — lunch is lunch, even at 40°.
   if (hour < 7) return "up before the roosters, allegedly.";
   if (hour >= 12 && hour < 13) return "thinking about lunch: adobo, sinigang, lumpia, etc.";
+  if (feels != null && feels >= 40 && sky !== "rain" && sky !== "drizzle")
+    return "standing directly in front of the electric fan, being dramatic.";
   return KAT_AT_WORK[day % KAT_AT_WORK.length];
 }
 // Each condition: a leading emoji, the factual report, and a small

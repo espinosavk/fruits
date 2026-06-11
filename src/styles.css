@@ -759,9 +759,32 @@
   .kat-name { font-size: 28px; padding-left: 4px; }
   .kat-section, .kat-links { padding-left: 4px; }
   .kat-bio, .kat-fruits { padding-left: 24px; }
-  .fruit-img { left: 130px; height: 135px; gap: 8px; }
+  .fruit-img { left: 110px; height: 135px; gap: 8px; }
   .fruit-img img { width: 90px; }
-  .fruit-note { font-size: 12px; max-width: 100px; }
+  .fruit-note { font-size: 12px; max-width: 92px; }
   .kat-avatar { width: 80px; height: 80px; }
   .kat-name-row { gap: 16px; }
+
+  /* The avatar sits near the right screen edge, so a centered bubble
+     can push long lines off-screen. Anchor it to the avatar's right
+     side instead — it grows leftward into open space — and move the
+     tail under the avatar to match. */
+  .kat-bubble {
+    left: auto;
+    right: -6px;
+    transform: translateY(4px) scale(0.92);
+    transform-origin: bottom right;
+  }
+  .kat-bubble::before {
+    left: auto;
+    right: 30px;
+    transform: rotate(45deg);
+  }
+  .kat-avatar-wrap:hover .kat-bubble,
+  .kat-avatar-wrap:focus-within .kat-bubble,
+  .kat-name-row:hover .kat-bubble,
+  .kat-name-row.is-greeting .kat-bubble,
+  .kat-name-row.is-speaking .kat-bubble {
+    transform: translateY(0) scale(1);
+  }
 }
