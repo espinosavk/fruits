@@ -167,6 +167,12 @@ export const Route = createRootRoute({
         type: "application/ld+json",
         children: JSON.stringify(personSchema),
       },
+      // Umami analytics — privacy-friendly, cookieless page stats.
+      {
+        defer: true,
+        src: "https://cloud.umami.is/script.js",
+        "data-website-id": "74a64909-f474-4b98-a566-15ee28931d4e",
+      },
     ],
   }),
   shellComponent: RootShell,
