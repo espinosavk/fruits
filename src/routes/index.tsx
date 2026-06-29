@@ -101,13 +101,22 @@ const KAT_AT_WORK = [
   "fermenting a big idea (it needs another week).",
 ];
 
+// Wet-weather variants — shared by storm, rain, and drizzle, rotated
+// by day of month like the work pool.
+const KAT_RAIN = [
+  "deciding it’s champorado weather.",
+  "in the great indoors, taking cover from the rain.",
+  "working with deep house + rain in the background.",
+  "watching the trees being swayed by the rain and wind.",
+  "somewhere doing things, hopefully with an umbrella.",
+];
+
 function describeKat(hour: number, day: number, sky: Sky, feels: number | null) {
   const awake = hour >= 6 && hour < 22;
   if (!awake) return "asleep.......zzzZ";
-  if (sky === "storm") return "watching the trees being swayed by the rain and wind.";
   if (sky === "snow") return "double-checking that this is really Manila.";
-  if (sky === "rain" || sky === "drizzle")
-    return "somewhere doing things, hopefully with an umbrella.";
+  if (sky === "storm" || sky === "rain" || sky === "drizzle")
+    return KAT_RAIN[day % KAT_RAIN.length];
   // Meals and mornings outrank the heat — lunch is lunch, even at 40°.
   if (hour < 7) return "up before the roosters, allegedly.";
   if (hour >= 12 && hour < 13) return "thinking about lunch: adobo, sinigang, lumpia, etc.";
