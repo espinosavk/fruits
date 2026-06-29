@@ -104,16 +104,14 @@ const KAT_AT_WORK = [
 function describeKat(hour: number, day: number, sky: Sky, feels: number | null) {
   const awake = hour >= 6 && hour < 22;
   if (!awake) return "asleep.......zzzZ";
-  if (sky === "storm") return "unplugging the router and narrating the thunder.";
+  if (sky === "storm") return "watching the trees being swayed by the rain and wind.";
   if (sky === "snow") return "double-checking that this is really Manila.";
-  if ((sky === "rain" || sky === "drizzle") && hour >= 7 && hour < 9)
-    return "walking anyway — the umbrella is mostly decorative.";
-  if ((sky === "rain" || sky === "drizzle") && hour >= 18 && hour < 20)
-    return "watching the rain like it’s prestige television.";
+  if (sky === "rain" || sky === "drizzle")
+    return "somewhere doing things, hopefully with an umbrella.";
   // Meals and mornings outrank the heat — lunch is lunch, even at 40°.
   if (hour < 7) return "up before the roosters, allegedly.";
   if (hour >= 12 && hour < 13) return "thinking about lunch: adobo, sinigang, lumpia, etc.";
-  if (feels != null && feels >= 40 && sky !== "rain" && sky !== "drizzle")
+  if (feels != null && feels >= 40)
     return "standing directly in front of the electric fan, being dramatic.";
   return KAT_AT_WORK[day % KAT_AT_WORK.length];
 }
