@@ -544,6 +544,7 @@ function Index() {
           <nav className="kat-links">
             <Link to="/ecology"><span className="label">Ecology of Ideas </span><span className="arrow">→</span></Link>
             <Link to="/unglamorous"><span className="label">Unglamorous mundane </span><span className="arrow">→</span></Link>
+            <a href="https://katdispatch.bearblog.dev/" target="_blank" rel="noopener noreferrer"><span className="label">Kat Dispatch </span><span className="arrow">→</span></a>
             <a href="mailto:kat@moonfrank.com"><span className="label">Contact: kat@moonfrank.com </span><span className="arrow">→</span></a>
           </nav>
         </div>
