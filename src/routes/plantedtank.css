@@ -1,0 +1,138 @@
+/* /plantedtank — the tank in a lit room. Everything scoped under
+   .pt-page so nothing leaks into the rest of the site. */
+
+.pt-page {
+  min-height: 100svh;
+  font-family: Georgia, "Times New Roman", serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.25rem 1.25rem 2rem;
+}
+
+/* dark: gallery lighting — a soft radial glow falls from above the
+   tank and fades to near-black at the edges; darker than the tank's
+   murk so the water glows */
+.pt-page.dark {
+  background: radial-gradient(
+      ellipse 95% 75% at 50% -5%,
+      #2b3520 0%,
+      #1b2213 45%,
+      #0f130c 100%
+    )
+    #0f130c;
+  color: #b7bda9;
+}
+
+/* light: paper, with a whisper of warm light from above */
+.pt-page.light {
+  background: radial-gradient(
+      ellipse 95% 75% at 50% -5%,
+      #f7f2e6 0%,
+      #efe9dd 55%,
+      #e6dfd0 100%
+    )
+    #efe9dd;
+  color: #39412f;
+}
+
+/* film grain over page AND tank — one grainy surface; taps pass through */
+.pt-page::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 260px 260px;
+  opacity: 0.07;
+  mix-blend-mode: soft-light;
+}
+
+.pt-page .pt-header {
+  width: min(980px, 100%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+/* back link — site structure, page palette */
+.pt-page .pt-back {
+  font-size: 0.95rem;
+  color: inherit;
+  opacity: 0.65;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+.pt-page .pt-back .label {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+.pt-page .pt-back:hover,
+.pt-page .pt-back:focus-visible {
+  opacity: 1;
+}
+
+/* the sun/moon switch: a small pill, knob slides to the active side */
+.pt-page .pt-theme-switch {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font: inherit;
+  font-size: 0.8rem;
+  line-height: 1;
+  padding: 0.3rem 0.55rem;
+  background: none;
+  border: 1px solid color-mix(in srgb, currentColor 30%, transparent);
+  border-radius: 999px;
+  color: inherit;
+  cursor: pointer;
+}
+.pt-page .pt-theme-switch .glyph {
+  position: relative;
+  z-index: 1;
+  width: 1.15rem;
+  text-align: center;
+  opacity: 0.55;
+}
+.pt-page .pt-theme-switch .knob {
+  position: absolute;
+  top: 3px;
+  bottom: 3px;
+  left: 3px;
+  width: calc(50% - 3px);
+  border-radius: 999px;
+  background: color-mix(in srgb, currentColor 14%, transparent);
+  transition: transform 0.25s ease;
+}
+.pt-page.dark .pt-theme-switch .knob {
+  transform: translateX(100%);
+}
+.pt-page.dark .pt-theme-switch .glyph:nth-child(2),
+.pt-page.light .pt-theme-switch .glyph:nth-child(1) {
+  opacity: 1;
+}
+
+/* the tank centers itself in the remaining space */
+.pt-page .pt-stage {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-block: 1rem;
+}
+
+@media (max-width: 560px) {
+  .pt-page {
+    padding: 0.9rem 0.75rem 1.25rem;
+  }
+  .pt-page .pt-stage {
+    align-items: flex-start;
+    padding-block: 1.5rem 0.5rem;
+  }
+}

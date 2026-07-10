@@ -10,12 +10,18 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as UnglamorousRouteImport } from './routes/unglamorous'
+import { Route as PlantedtankRouteImport } from './routes/plantedtank'
 import { Route as EcologyRouteImport } from './routes/ecology'
 import { Route as IndexRouteImport } from './routes/index'
 
 const UnglamorousRoute = UnglamorousRouteImport.update({
   id: '/unglamorous',
   path: '/unglamorous',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlantedtankRoute = PlantedtankRouteImport.update({
+  id: '/plantedtank',
+  path: '/plantedtank',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EcologyRoute = EcologyRouteImport.update({
@@ -32,30 +38,34 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/ecology': typeof EcologyRoute
+  '/plantedtank': typeof PlantedtankRoute
   '/unglamorous': typeof UnglamorousRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/ecology': typeof EcologyRoute
+  '/plantedtank': typeof PlantedtankRoute
   '/unglamorous': typeof UnglamorousRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/ecology': typeof EcologyRoute
+  '/plantedtank': typeof PlantedtankRoute
   '/unglamorous': typeof UnglamorousRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/ecology' | '/unglamorous'
+  fullPaths: '/' | '/ecology' | '/plantedtank' | '/unglamorous'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/ecology' | '/unglamorous'
-  id: '__root__' | '/' | '/ecology' | '/unglamorous'
+  to: '/' | '/ecology' | '/plantedtank' | '/unglamorous'
+  id: '__root__' | '/' | '/ecology' | '/plantedtank' | '/unglamorous'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   EcologyRoute: typeof EcologyRoute
+  PlantedtankRoute: typeof PlantedtankRoute
   UnglamorousRoute: typeof UnglamorousRoute
 }
 
@@ -66,6 +76,13 @@ declare module '@tanstack/react-router' {
       path: '/unglamorous'
       fullPath: '/unglamorous'
       preLoaderRoute: typeof UnglamorousRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/plantedtank': {
+      id: '/plantedtank'
+      path: '/plantedtank'
+      fullPath: '/plantedtank'
+      preLoaderRoute: typeof PlantedtankRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/ecology': {
@@ -88,6 +105,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   EcologyRoute: EcologyRoute,
+  PlantedtankRoute: PlantedtankRoute,
   UnglamorousRoute: UnglamorousRoute,
 }
 export const routeTree = rootRouteImport
